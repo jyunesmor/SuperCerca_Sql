@@ -1,17 +1,17 @@
-# SuperCerca_Sql
+ <h1><center>SuperCerca_Sql</center></h1>
 
-# Modelo de Base de Datos para E-commerce
+Modelo de Base de Datos para E-commerce
 Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
 
-# Modelo DER Ontologico de ideas para E-commerce
+<h2><center>Modelo DER Ontologico de ideas para E-commerce</center></h2>
 
 ![image](https://github.com/user-attachments/assets/4f76e05c-9ee8-4aaa-a37f-7f083de70e73)
 
-# Modelo DER Final en Mysql para E-commerce
+<h2><center>Modelo DER Final en Mysql para E-commerce</center></h2>
 
 ![image](https://github.com/user-attachments/assets/88434abf-50ed-417d-bc6b-1eda3267b361)
 
-## Tablas y Relaciones
+<h2><center>Tablas y Relaciones</center></h2>
 
 ### 1. `users` (usuarios)
    - Almacena los datos de los usuarios, incluyendo identificación, nombre, correo electrónico y dirección de facturación.
@@ -55,7 +55,7 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 ### 11. `country` (país), `state` (estado), `city` (ciudad)
    - Estas tablas almacenan información geográfica de los países, estados y ciudades, relacionadas con `address`.
 
-## Solución que Proporciona
+<h2><center>Base de Datos orientada a</center></h2>
 Este modelo de datos proporciona una estructura completa para gestionar un sistema de comercio electrónico con múltiples funcionalidades, incluyendo la administración de productos, usuarios, pedidos, facturación y logística. También asegura flexibilidad para agregar distintos métodos de pago, tipos de entrega y clasificaciones de empresas. Además, cuenta con una estructura geográfica detallada para las direcciones, facilitando futuras expansiones del sistema a nivel regional o internacional.
 
 Con esta base de datos, un equipo de desarrollo puede crear una aplicación de comercio electrónico que gestione todas las operaciones mencionadas, ofreciendo una experiencia de compra y entrega fluida para los usuarios.
