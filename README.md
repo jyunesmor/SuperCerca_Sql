@@ -1,4 +1,4 @@
- <h1><center>SuperCerca_Sql</center></h1>
+ <p><center>SuperCerca_Sql</center></p>
 
 Modelo de Base de Datos para E-commerce
 Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
