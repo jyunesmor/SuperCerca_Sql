@@ -16,7 +16,7 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 
 ![image](https://github.com/user-attachments/assets/88434abf-50ed-417d-bc6b-1eda3267b361)
 
-<center><h3>Tablas y Relaciones</h3></center>
+<h4 align="center">Tablas y Relaciones</h4>
 
 ## 1. `users` (usuarios)
 
@@ -135,7 +135,7 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 - id_city: INT, PK, Identificador único de la ciudad.
 - city_name: VARCHAR(256), Nombre de la ciudad.
 
- <center><h2>Solución que Proporciona</h2></center>
+<h2 align="center">Solución que Proporciona</h2>
 
 Este modelo de datos proporciona una estructura completa para gestionar un sistema de comercio electrónico con múltiples funcionalidades, incluyendo la administración de productos, usuarios, pedidos, facturación y logística. También asegura flexibilidad para agregar distintos métodos de pago, tipos de entrega y clasificaciones de empresas. Además, cuenta con una estructura geográfica detallada para las direcciones, facilitando futuras expansiones del sistema a nivel regional o internacional.
 
