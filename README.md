@@ -1,16 +1,14 @@
-<h1><center>SuperCerca_Sql</center></h1>
+<center><h1>SuperCerca_Sql</h1></center>
 
 <center><h2>Modelo de Base de Datos para E-commerce</h2></center>
 
-=======
-
- <div align="center"><h1><center>SuperCerca_Sql</center></h1><div>
+ <center><h1>SuperCerca_Sql</h1></center>
  <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
 
 <hr>
 Modelo de Base de Datos para E-commerce
 
-    Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
+Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
 
  <center><h2>Modelo DER Ontologico de ideas para E-commerce</h2></center>
 
