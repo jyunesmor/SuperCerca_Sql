@@ -1,11 +1,8 @@
 <div align="center">
-<h1>SuperCerca_Sql</h1></div>
-
+<h1>SuperCerca_Sql</h1>
 <h2>Modelo de Base de Datos para E-commerce</h2>
-</div>
-
 <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
-
+</div>
 <hr>
 Modelo de Base de Datos para E-commerce
 
