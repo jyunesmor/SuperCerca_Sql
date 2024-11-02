@@ -1,17 +1,16 @@
-<<<<<<< HEAD
 <h1><center>SuperCerca_Sql</center></h1>
 
 <center><h2>Modelo de Base de Datos para E-commerce</h2></center>
 
 =======
- <h1><center>SuperCerca_Sql</center></h1>
- <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
 
+ <div align="center"><h1><center>SuperCerca_Sql</center></h1><div>
+ <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
 
 <hr>
 Modelo de Base de Datos para E-commerce
->>>>>>> 735c57c2b4a6e052120e0ba70200cc62c6d679ef
-Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
+
+    Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
 
  <center><h2>Modelo DER Ontologico de ideas para E-commerce</h2></center>
 
@@ -140,7 +139,7 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 - id_city: INT, PK, Identificador único de la ciudad.
 - city_name: VARCHAR(256), Nombre de la ciudad.
 
-- <center><h2>Solución que Proporciona</h2></center>
+ <center><h2>Solución que Proporciona</h2></center>
 
 Este modelo de datos proporciona una estructura completa para gestionar un sistema de comercio electrónico con múltiples funcionalidades, incluyendo la administración de productos, usuarios, pedidos, facturación y logística. También asegura flexibilidad para agregar distintos métodos de pago, tipos de entrega y clasificaciones de empresas. Además, cuenta con una estructura geográfica detallada para las direcciones, facilitando futuras expansiones del sistema a nivel regional o internacional.
 
