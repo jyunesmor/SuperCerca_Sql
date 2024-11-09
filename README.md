@@ -1,5 +1,5 @@
 <div align="center">
- <img href="./logo700.png" />
+ <img src="./logo700.png" />
 <h1>SuperCerca_Sql</h1>
 <h2>Modelo de Base de Datos para E-commerce</h2>
 <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
