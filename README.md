@@ -1,5 +1,5 @@
-<div align="center">
 ![logo500](https://github.com/user-attachments/assets/be543725-5341-49df-9ac5-6bf076cfd7ef)
+<div align="center">
 <h1>SuperCerca_Sql</h1>
 <h2>Modelo de Base de Datos para E-commerce</h2>
 <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
