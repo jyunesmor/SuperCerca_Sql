@@ -121,75 +121,90 @@ CREATE TABLE city(
 -- USERS
 
 ALTER TABLE users
-  ADD CONSTRAINT fk_constraint_id_address_u FOREIGN KEY (id_address) 
+  ADD CONSTRAINT fk_constraint_id_address_u
+  FOREIGN KEY (id_address) 
   REFERENCES address(id_address);
 
 ALTER TABLE users
-  ADD CONSTRAINT fk_constraint_id_payment FOREIGN KEY (id_payment) 
+  ADD CONSTRAINT fk_constraint_id_payment 
+  FOREIGN KEY (id_payment) 
   REFERENCES payment_methods(id_payment);
 
 -- PRODUCTS
 
 ALTER TABLE products
-  ADD CONSTRAINT fk_constraint_id_company_p FOREIGN KEY (id_company) 
+  ADD CONSTRAINT fk_constraint_id_company_p 
+  FOREIGN KEY (id_company) 
   REFERENCES company(id_company);
 
 -- ORDER_PURCHASE
 
 ALTER TABLE order_purchase
-  ADD CONSTRAINT fk_constraint_id_product FOREIGN KEY (id_product) 
+  ADD CONSTRAINT fk_constraint_id_product 
+  FOREIGN KEY (id_product) 
   REFERENCES products(id_product);
 
 ALTER TABLE order_purchase
-  ADD CONSTRAINT fk_constraint_id_user FOREIGN KEY (id_user) 
+  ADD CONSTRAINT fk_constraint_id_user 
+  FOREIGN KEY (id_user) 
   REFERENCES users(id_user);
 
 ALTER TABLE order_purchase
-  ADD CONSTRAINT fk_constraint_id_delivery FOREIGN KEY (id_delivery) 
+  ADD CONSTRAINT fk_constraint_id_delivery 
+  FOREIGN KEY (id_delivery) 
   REFERENCES delivery(id_delivery);
 
 -- COMPANY
 
 ALTER TABLE company
-  ADD CONSTRAINT fk_constraint_id_company_type FOREIGN KEY (id_company_type) 
+  ADD CONSTRAINT fk_constraint_id_company_type 
+  FOREIGN KEY (id_company_type) 
   REFERENCES company_type(id_company_type);
 
 ALTER TABLE company
-  ADD CONSTRAINT fk_constraint_id_address_c FOREIGN KEY (id_address) 
+  ADD CONSTRAINT fk_constraint_id_address_c 
+  FOREIGN KEY (id_address) 
   REFERENCES address(id_address);
 
 -- ADDRESS
 
 ALTER TABLE address
-  ADD CONSTRAINT fk_constraint_id_country FOREIGN KEY (id_country) 
+  ADD CONSTRAINT fk_constraint_id_country 
+  FOREIGN KEY (id_country) 
   REFERENCES country(id_country);
 
 ALTER TABLE address
-  ADD CONSTRAINT fk_constraint_id_phone FOREIGN KEY (id_phone) 
+  ADD CONSTRAINT fk_constraint_id_phone 
+  FOREIGN KEY (id_phone) 
   REFERENCES phone(id_phone);
 
 -- INVOICE
 
 ALTER TABLE invoice
-  ADD CONSTRAINT fk_constraint_id_company_i FOREIGN KEY (id_company) 
+  ADD CONSTRAINT fk_constraint_id_company_i 
+  FOREIGN KEY (id_company) 
   REFERENCES company(id_company);
 
 ALTER TABLE invoice
-  ADD CONSTRAINT fk_constraint_id_order FOREIGN KEY (id_order) 
+  ADD CONSTRAINT fk_constraint_id_order 
+  FOREIGN KEY (id_order) 
   REFERENCES order_purchase(id_order);
 
 -- COUNTRY
 
 ALTER TABLE country
-  ADD CONSTRAINT fk_constraint_id_state FOREIGN KEY (id_state) 
+  ADD CONSTRAINT fk_constraint_id_state 
+  FOREIGN KEY (id_state) 
   REFERENCES state(id_state);
 
 ALTER TABLE country
-  ADD CONSTRAINT fk_constraint_id_city FOREIGN KEY (id_city) 
+  ADD CONSTRAINT fk_constraint_id_city 
+  FOREIGN KEY (id_city) 
   REFERENCES city(id_city);
 
 -- DELIVERY
 
 ALTER TABLE delivery
-  ADD CONSTRAINT fk_constraint_id_company_d FOREIGN KEY (id_company) 
+  ADD CONSTRAINT fk_constraint_id_company_d 
+  FOREIGN KEY (id_company) 
   REFERENCES company(id_company);
