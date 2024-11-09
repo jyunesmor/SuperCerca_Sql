@@ -1,4 +1,5 @@
 <div align="center">
+![logo500](https://github.com/user-attachments/assets/be543725-5341-49df-9ac5-6bf076cfd7ef)
 <h1>SuperCerca_Sql</h1>
 <h2>Modelo de Base de Datos para E-commerce</h2>
 <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
@@ -10,7 +11,8 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 
  <center><h2>Modelo DER Ontologico de ideas para E-commerce</h2></center>
 
-![image](https://github.com/user-attachments/assets/4f76e05c-9ee8-4aaa-a37f-7f083de70e73)
+![SuperCerca DER](https://github.com/user-attachments/assets/46b7309a-c19d-4c2c-ac1a-d68221be4aca)
+
 
 <center><h2>Modelo DER Final en Mysql para E-commerce</h2></center>
 
