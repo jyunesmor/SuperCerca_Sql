@@ -2,14 +2,14 @@ DELIMITER //
 CREATE PROCEDURE sp_GetUserDetails(IN user_id INT)
 BEGIN
   SELECT 
-    u.identification_id AS Documento_Identidad
-,   u.name_user AS Nombre
-,   u.last_name_user AS Apellido
-,   u.email AS Mail
-,   a.street_address AS Calle
-,   a.number_street AS Numero
-,   c.city_name AS Ciudad
-,   s.state_name AS Provincia
+      u.identification_id AS Documento_Identidad
+  ,   u.name_user AS Nombre
+  ,   u.last_name_user AS Apellido
+  ,   u.email AS Mail
+  ,   a.street_address AS Calle
+  ,   a.number_street AS Numero
+  ,   c.city_name AS Ciudad
+  ,   s.state_name AS Provincia
   FROM
       users  AS u
   INNER JOIN  address AS a
@@ -18,28 +18,8 @@ BEGIN
       USING(id_city)
   INNER JOIN  state AS s
       USING(id_state)
-WHERE
+  WHERE
     id_user = user_id;
-END //
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE sp_GetOrderDetails(IN order_id INT)
-BEGIN
-  SELECT 
-      o.id_order,
-      o.total_order_price,
-      o.order_created,
-      u.name_user,
-      u.last_name_user,
-      u.email,
-      p.name_product,
-      d.id_company AS delivery_company_id
-  FROM order_purchase o
-  INNER JOIN users u ON u.id_user = o.id_user
-  INNER JOIN products p ON o.id_product = p.id_product
-  INNER JOIN delivery d ON o.id_delivery = d.id_delivery
-  WHERE o.id_order = order_id;
 END //
 DELIMITER ;
 
