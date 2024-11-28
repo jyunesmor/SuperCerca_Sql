@@ -143,3 +143,108 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 Este modelo de datos proporciona una estructura completa para gestionar un sistema de comercio electrónico con múltiples funcionalidades, incluyendo la administración de productos, usuarios, pedidos, facturación y logística. También asegura flexibilidad para agregar distintos métodos de pago, tipos de entrega y clasificaciones de empresas. Además, cuenta con una estructura geográfica detallada para las direcciones, facilitando futuras expansiones del sistema a nivel regional o internacional.
 
 Con esta base de datos, un equipo de desarrollo puede crear una aplicación de comercio electrónico que gestione todas las operaciones mencionadas, ofreciendo una experiencia de compra y entrega fluida para los usuarios.
+
+
+
+# Sistema de Gestión de Base de Datos de E-Commerce
+
+## Descripción General
+
+Este proyecto implementa un sistema de gestión de base de datos integral para una plataforma de comercio electrónico, que incluye vistas, procedimientos almacenados, funciones y triggers para administrar usuarios, productos y pedidos.
+
+
+
+
+## Componentes de la Base de Datos
+
+### Vistas
+
+#### 1. user_orders
+- **Propósito**: Recupera los detalles de pedidos del usuario actual
+- **Columnas**:
+  - `order_id`: Identificador único del pedido
+  - `product_name`: Nombre del producto comprado
+  - `total_price`: Precio total del pedido
+  - `order_date`: Fecha de creación del pedido
+
+#### 2. products_by_company
+- **Propósito**: Lista los productos con su empresa correspondiente y precio
+- **Columnas**:
+  - `Product`: Nombre del producto
+  - `Company`: Nombre de la empresa que vende el producto
+  - `Price`: Precio del producto
+
+### Procedimientos Almacenados
+
+#### 1. sp_GetUserDetails
+- **Propósito**: Recuperar información completa del usuario, incluyendo detalles personales y de dirección
+- **Entrada**: `user_id` (INT)
+- **Devuelve**:
+  - ID de Identificación
+  - Nombre
+  - Apellido
+  - Correo Electrónico
+  - Dirección
+  - Número de Calle
+  - Ciudad
+  - Estado/Provincia
+
+#### 2. sp_GetOrderDetails
+- **Propósito**: Obtener información detallada de un pedido específico
+- **Entrada**: `order_id` (INT)
+- **Devuelve**:
+  - ID de Pedido
+  - Precio Total del Pedido
+  - Fecha de Creación del Pedido
+  - Nombre del Usuario
+  - Apellido del Usuario
+  - Correo Electrónico del Usuario
+  - Nombre del Producto
+  - ID de Empresa de Entrega
+
+#### 3. sp_UpdateProductPrice
+- **Propósito**: Actualizar el precio de un producto específico
+- **Entradas**:
+  - `product_id` (INT)
+  - `new_price` (DECIMAL)
+
+#### 4. sp_CreateUser
+- **Propósito**: Crear un nuevo usuario en el sistema
+- **Entradas**:
+  - `id_user` (INT)
+  - `name` (VARCHAR)
+  - `last_name` (VARCHAR)
+  - `identification_id` (VARCHAR)
+  - `email` (VARCHAR)
+  - `password` (VARCHAR)
+  - `address_id` (INT)
+  - `payment_id` (INT)
+
+### Funciones
+
+#### 1. fx_GetNameCompany
+- **Propósito**: Recuperar el nombre completo de una empresa con su ID fiscal
+- **Entrada**: `company_id` (INT)
+- **Devuelve**: Nombre de la empresa con el ID fiscal entre paréntesis
+
+### Triggers
+
+#### 1. check_user_exists
+- **Propósito**: Prevenir el registro de usuarios con ID o correo electrónico duplicados
+- **Puntos de Activación**:
+  - Antes de insertar un nuevo usuario
+- **Validaciones**:
+  - Verifica si el ID de usuario ya existe
+  - Verifica si el correo electrónico ya está registrado
+- **Acción**: Genera un error con un mensaje descriptivo si se encuentran duplicados
+
+## Ejemplos de Uso
+
+### Uso de Vistas
+
+```sql
+-- Obtener productos por empresa
+SELECT * FROM products_by_company;
+
+-- Obtener pedidos del usuario actual
+SELECT * FROM user_orders;
