@@ -1,3 +1,16 @@
+-- VIEW --
+
+CREATE VIEW user_orders AS
+SELECT 
+  o.id_order AS order_id,
+  p.name_product AS product_name,
+  o.total_order_price AS total_price,
+  o.order_created AS order_date
+FROM order_purchase o
+INNER JOIN products p ON o.id_product = p.id_product
+INNER JOIN users u ON o.id_user = u.id_user;
+
+
 CREATE VIEW products_by_company AS
 SELECT 
   p.name_product AS Product,
@@ -6,15 +19,3 @@ SELECT
 FROM products AS p
 INNER JOIN company AS c
   USING(id_company);
-
-CREATE VIEW user_orders AS
-  SELECT 
-    o.id_order AS order_id,
-    p.name_product AS product_name,
-    o.total_order_price AS total_price,
-    o.order_created AS order_date
-  FROM order_purchase o
-  INNER JOIN products p 
-    USING(id_product)
-  INNER JOIN users u 
-    USING(id_user);
