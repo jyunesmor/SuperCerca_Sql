@@ -1,6 +1,9 @@
 -- FUNCTION --
 
+-- Funcion para determinar obtener nombre de la empresa segun su Id
+
 DELIMITER //
+DROP FUNCTION IF EXISTS  fx_GetNameCompany;    
 CREATE FUNCTION fx_GetNameCompany(company_id INT)
 RETURNS VARCHAR(512)
 READS SQL DATA
@@ -15,7 +18,9 @@ DELIMITER ;
 
 
 -- Funcion para determinar el valor total del carrito por Id Carrito
+
 DELIMITER //
+DROP FUNCTION IF EXISTS  fx_GetTotalPriceCart;     
 CREATE FUNCTION fx_GetTotalPriceCart(_id_cart INT)
 RETURNS DECIMAL(10,2)
 DETERMINISTIC
