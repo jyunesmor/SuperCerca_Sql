@@ -2,8 +2,8 @@
 
 --  Esta View nos muestra los nmbres de los productos junto a su empresa fabricante y el precio del mismo
 
-DROP VIEW IF EXISTS  fx_Productsbycompany;
-CREATE VIEW fx_Productsbycompany AS
+DROP VIEW IF EXISTS  vw_Productsbycompany;
+CREATE VIEW vw_Productsbycompany AS
 SELECT 
   p.name_product AS Product,
   c.name_company AS Company,
@@ -15,8 +15,8 @@ INNER JOIN company AS c
 
 --  Esta View nos muestra la cantidad Productos adquiridos por cada Usuario
 
-DROP VIEW IF EXISTS  fx_QuantityProductByUsers;
-CREATE VIEW fx_CartDetailsbyUsers AS
+DROP VIEW IF EXISTS  vw_QuantityProductByUsers;
+CREATE VIEW vw_QuantityProductByUsers AS
 SELECT 
     u.name_user
 ,   COUNT(u.id_user)
@@ -31,8 +31,8 @@ GROUP BY
 
 --  Esta View nos muestra los Productos mas Vendidos de manera Descendente
 
-DROP VIEW IF EXISTS  fx_ListMostSaleProduct;
-CREATE VIEW fx_ListMostSaleProduct AS   
+DROP VIEW IF EXISTS  vw_ListMostSaleProduct;
+CREATE VIEW vw_ListMostSaleProduct AS   
 SELECT 
     p.name_product
 ,   COUNT(p.name_product) AS Cant_Productos_Mas_vendidos
