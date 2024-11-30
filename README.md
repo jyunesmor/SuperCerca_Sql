@@ -15,7 +15,8 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 
 <center><h2>Modelo DER Final en Mysql para E-commerce</h2></center>
 
-![DER](https://github.com/user-attachments/assets/6244dbbe-79c0-439b-bab3-5bd501950c18)
+![DER](https://github.com/user-attachments/assets/d167d032-8e2c-4750-9e1e-4fd4348ea322)
+
 
 <h2 align="center">Tablas y Relaciones</h2>
 
