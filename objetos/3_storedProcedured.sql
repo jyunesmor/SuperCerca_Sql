@@ -1,6 +1,8 @@
 -- STORED PROCEDURES --
 
+-- Procedimiento para Obtener los datos de los usuarios
 DELIMITER //
+DROP PROCEDURE IF EXISTS  sp_GetUserDetails;
 CREATE PROCEDURE sp_GetUserDetails(IN user_id INT)
 BEGIN
   SELECT 
@@ -25,27 +27,9 @@ WHERE
 END //
 DELIMITER ;
 
+-- Procedimiento para actualizar los precios a productos
 DELIMITER //
-CREATE PROCEDURE sp_GetOrderDetails(IN order_id INT)
-BEGIN
-  SELECT 
-      o.id_order,
-      o.total_order_price,
-      o.order_created,
-      u.name_user,
-      u.last_name_user,
-      u.email,
-      p.name_product,
-      d.id_company AS delivery_company_id
-  FROM order_purchase o
-  INNER JOIN users u ON u.id_user = o.id_user
-  INNER JOIN products p ON o.id_product = p.id_product
-  INNER JOIN delivery d ON o.id_delivery = d.id_delivery
-  WHERE o.id_order = order_id;
-END //
-DELIMITER ;
-
-DELIMITER //
+DROP PROCEDURE IF EXISTS  sp_UpdateProductPrice;
 CREATE PROCEDURE sp_UpdateProductPrice(IN product_id INT, IN new_price DECIMAL(10,2))
 BEGIN
   UPDATE products
@@ -54,7 +38,9 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Procedimiento para la creacion de usuarios nuevos
 DELIMITER //
+DROP PROCEDURE IF EXISTS  sp_CreateUser;
 CREATE PROCEDURE sp_CreateUser(IN _id_user INT, IN _name VARCHAR(256), IN _last_name VARCHAR(256), IN _identification_id VARCHAR(15), 
                              IN _email VARCHAR(256), IN _password VARCHAR(10), IN _address_id INT, IN _payment_id INT)
 BEGIN
