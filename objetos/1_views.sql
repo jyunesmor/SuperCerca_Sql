@@ -1,17 +1,9 @@
 -- VIEW --
 
-CREATE VIEW user_orders AS
-SELECT 
-  o.id_order AS order_id,
-  p.name_product AS product_name,
-  o.total_order_price AS total_price,
-  o.order_created AS order_date
-FROM order_purchase o
-INNER JOIN products p ON o.id_product = p.id_product
-INNER JOIN users u ON o.id_user = u.id_user;
+--  Esta View nos muestra los nmbres de los productos junto a su empresa fabricante y el precio del mismo
 
-
-CREATE VIEW products_by_company AS
+DROP VIEW IF EXISTS  fx_Productsbycompany;
+CREATE VIEW fx_Productsbycompany AS
 SELECT 
   p.name_product AS Product,
   c.name_company AS Company,
@@ -19,3 +11,40 @@ SELECT
 FROM products AS p
 INNER JOIN company AS c
   USING(id_company);
+
+
+--  Esta View nos muestra la cantidad Productos adquiridos por cada Usuario
+
+DROP VIEW IF EXISTS  fx_QuantityProductByUsers;
+CREATE VIEW fx_CartDetailsbyUsers AS
+SELECT 
+    u.name_user
+,   COUNT(u.id_user)
+FROM supercerca.users AS u
+INNER JOIN supercerca.cart AS c
+    ON u.id_user = c.users_id    
+INNER JOIN supercerca.cart_items AS ci
+    ON c.id_cart = ci.cart_id
+GROUP BY      
+   ci.cart_id; 
+
+
+--  Esta View nos muestra los Productos mas Vendidos de manera Descendente
+
+DROP VIEW IF EXISTS  fx_ListMostSaleProduct;
+CREATE VIEW fx_ListMostSaleProduct AS   
+SELECT 
+    p.name_product
+,   COUNT(p.name_product) AS Cant_Productos_Mas_vendidos
+FROM supercerca.users AS u
+INNER JOIN supercerca.cart AS c
+    ON u.id_user = c.users_id    
+INNER JOIN supercerca.cart_items AS ci
+    ON c.id_cart = ci.cart_id
+INNER JOIN supercerca.products AS p 
+    ON  ci.products_id = p.id_product 
+GROUP BY
+    p.name_product
+ORDER BY 
+    Cant_Productos_Mas_vendidos DESC;
+    
