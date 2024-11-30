@@ -156,5 +156,36 @@ INSERT INTO order_purchase (id_order, total_order_price, order_created, id_produ
 VALUES
   (1, 1299.99, curdate(), 1, 1, 1),  -- iPhone 15 Pro Max (user John Doe)
   (2, 1499.99, curdate(), 3, 2, 2),  -- MacBook Pro 14" (user Jane Smith)
-  (3, 499.99, curdate(), 5, 3, 3); -- Sony PlayStation 5 (user Michael Johnson)
-  
+  (3, 499.99, curdate(), 5, 3, 3); -- Sony PlayStation 5 (user Michael Johnson);
+
+
+  INSERT INTO cart (id_cart, users_id)
+  VALUES 
+    (1,3),
+    (2,4),
+    (3,7),
+    (4,2),
+    (5,3);
+    
+  INSERT INTO cart_items (id_cart_items, cart_id, products_id)
+  VALUES 
+    (1,1,3),
+    (2,1,9),
+    (3,1,15),
+    (4,1,13),
+    (5,2,3),
+    (6,2,14),
+    (7,2,6),
+    (8,2,4),
+    (9,3,1),
+    (10,3,15),
+    (11,3,4),
+    (12,3,8),
+    (13,1,2),
+    (14,1,10),
+    (15,1,15),
+    (16,1,6),
+    (17,5,3),
+    (18,5,7),
+    (19,5,9),
+    (20,5,6);

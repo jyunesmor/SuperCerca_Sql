@@ -116,6 +116,21 @@ CREATE TABLE city (
 );
 
 
+CREATE TABLE cart_items (
+    id_cart_Items INT NOT NULL,
+    cart_id INT,
+    products_id INT,
+    PRIMARY KEY(id_cart_Items)
+);
+
+CREATE TABLE cart (
+    id_cart INT NOT NULL,
+    users_id INT,
+    
+    PRIMARY KEY(id_cart)
+);
+
+
 -- FOREIGN KEY
 
 -- USERS
@@ -183,3 +198,15 @@ ALTER TABLE invoice
 ALTER TABLE delivery
   ADD CONSTRAINT fk_constraint_id_company_d FOREIGN KEY (id_company) 
   REFERENCES company(id_company);
+
+    ALTER TABLE cart
+  ADD CONSTRAINT fk_constraint_id_cart FOREIGN KEY (users_id) 
+  REFERENCES users(id_user);
+
+ALTER TABLE cart_items
+  ADD CONSTRAINT fk_constraint_id_cart_items FOREIGN KEY (cart_id) 
+  REFERENCES cart(id_cart);
+  
+ALTER TABLE cart_items
+  ADD CONSTRAINT fk_constraint_id_products_items FOREIGN KEY (products_id) 
+  REFERENCES products(id_product);
