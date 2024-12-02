@@ -1,3 +1,5 @@
+USE supercerca;
+
 INSERT INTO country (id_country,country_name)
   VALUES 
   (1,'Argentina'),
