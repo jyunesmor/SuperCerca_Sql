@@ -38,3 +38,16 @@ CREATE
         RETURN price_total_cart;
   END //
 DELIMITER ;
+
+
+DELIMITER //
+DROP FUNCTION IF EXISTS fx_EncryptPassword //
+
+CREATE FUNCTION fx_EncryptPassword(_password VARCHAR(200))
+RETURNS VARCHAR(200)
+DETERMINISTIC
+BEGIN
+    DECLARE _salt VARCHAR(200) DEFAULT 'juanma1235';
+    RETURN TO_BASE64(AES_ENCRYPT(_password, _salt));
+END //
+DELIMITER ;

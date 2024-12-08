@@ -14,7 +14,8 @@ CREATE
       p.price_product AS Price
     FROM products AS p
     INNER JOIN company AS c
-      USING(id_company);
+      USING(id_company)
+    ORDER BY name_company;
 
 
 --  Esta View nos muestra la cantidad Productos adquiridos por cada Usuario
