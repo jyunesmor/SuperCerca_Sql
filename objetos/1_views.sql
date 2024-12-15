@@ -59,3 +59,32 @@ CREATE
     ORDER BY 
         Cant_Productos_Mas_vendidos DESC;
         
+        
+        
+--  Esta View mostrara el listado de compras detalladas con sus usuarios 
+
+DROP VIEW IF EXISTS vw_list_history_orders;
+CREATE
+ OR REPLACE
+ VIEW vw_list_history_orders
+ AS
+  SELECT
+    o.id_order AS N°_de_Orden
+  , concat(u.last_name_user,', ',u.name_user) AS Nombre_y_Apellido
+  , u.email AS Correo_electronico
+  , o.order_created AS Fecha_pedido
+  , o.total_order_price AS Valor_Total_Pedido
+  , ci.products_id AS Codigo_Producto
+  , p.name_product AS Nombre_Producto
+  , p.price_product AS Precio_Producto
+  FROM supercerca.order_purchase AS o
+  INNER JOIN supercerca.cart AS c
+    USING(id_cart)
+  INNER JOIN supercerca.users AS u
+    USING(id_user)
+  INNER JOIN supercerca.cart_items AS ci
+    ON c.id_cart = ci.cart_id
+  INNER JOIN supercerca.products AS p
+    ON ci.products_id = p.id_product
+  ORDER BY o.id_order;
+    

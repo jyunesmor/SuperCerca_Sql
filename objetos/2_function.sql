@@ -15,13 +15,11 @@ CREATE
     WHERE id_company = company_id;
     RETURN nombre_completo;
   END //
-DELIMITER ;
-
+DELIMITER;
 
 -- Funcion para determinar el valor total del carrito por Id Carrito
-
 DELIMITER //
-DROP FUNCTION IF EXISTS  fx_GetTotalPriceCart;     
+DROP FUNCTION IF EXISTS  fx_GetTotalPriceCart // 
 CREATE 
   FUNCTION fx_GetTotalPriceCart(_id_cart INT)
   RETURNS DECIMAL(10,2)
@@ -37,17 +35,17 @@ CREATE
     WHERE c.id_cart = _id_cart;
         RETURN price_total_cart;
   END //
-DELIMITER ;
+DELIMITER;
 
-
+-- Funcion para determinar el valor total del carrito por Id Carrito
 DELIMITER //
-DROP FUNCTION IF EXISTS fx_EncryptPassword //
-
-CREATE FUNCTION fx_EncryptPassword(_password VARCHAR(200))
-RETURNS VARCHAR(200)
-DETERMINISTIC
+DROP FUNCTION IF EXISTS fx_get_date_random //
+CREATE FUNCTION fx_get_date_random() RETURNS DATE
+NO SQL
 BEGIN
-    DECLARE _salt VARCHAR(200) DEFAULT 'juanma1235';
-    RETURN TO_BASE64(AES_ENCRYPT(_password, _salt));
+    DECLARE date_order DATE;
+    SELECT DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * DATEDIFF('2024-12-13', '2020-01-01')) DAY) INTO date_order;
+    RETURN date_order;
 END //
 DELIMITER ;
+

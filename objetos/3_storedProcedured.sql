@@ -4,7 +4,7 @@ SET autocommit = FALSE;
 
 -- Procedimiento para Obtener los datos de los usuarios
 DELIMITER //
-DROP PROCEDURE IF EXISTS  sp_GetUserDetails;
+DROP PROCEDURE IF EXISTS  sp_GetUserDetails //
 CREATE 
   PROCEDURE sp_GetUserDetails(IN user_id INT)
   BEGIN
@@ -37,7 +37,7 @@ DELIMITER ;
 
 -- Procedimiento para actualizar los precios a productos
 DELIMITER //
-DROP PROCEDURE IF EXISTS  sp_UpdateProductPrice;
+DROP PROCEDURE IF EXISTS  sp_UpdateProductPrice //
 CREATE 
   PROCEDURE sp_UpdateProductPrice(IN product_id INT, IN new_price DECIMAL(10,2))
   BEGIN
@@ -50,7 +50,7 @@ CREATE
 DELIMITER ;
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS  sp_updateUser;
+DROP PROCEDURE IF EXISTS  sp_updateUser //
 CREATE 
   PROCEDURE sp_updateUser(IN _id_user INT, IN _name VARCHAR(256), IN _last_name VARCHAR(256), IN _identification_id VARCHAR(15), 
                              IN _email VARCHAR(256), IN _password VARCHAR(10), IN _address_id INT, IN _payment_id INT)
@@ -75,7 +75,7 @@ DELIMITER ;
 -- Procedimiento para la creacion de usuarios nuevos --
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS  sp_createUser;
+DROP PROCEDURE IF EXISTS  sp_createUser //
 CREATE 
   PROCEDURE sp_createUser(IN _id_user INT, IN _name VARCHAR(256), IN _last_name VARCHAR(256), IN _identification_id VARCHAR(15), 
                              IN _email VARCHAR(256), IN _password VARCHAR(256), IN _address_id INT, IN _payment_id INT)
@@ -90,7 +90,7 @@ DELIMITER ;
 -- Procedimiento para la creacion de productos nuevos --
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS  sp_createProducts;
+DROP PROCEDURE IF EXISTS  sp_createProducts //
 CREATE 
   PROCEDURE sp_createProducts(IN _id_product INT, IN _name_product VARCHAR(256), IN _price_product DECIMAL(10,2), IN _description_product VARCHAR(256), 
                              IN _id_company INT)
@@ -108,7 +108,7 @@ DELIMITER ;
 -- Procedimiento para la eliminacion de usuarios --
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS sp_deleteUserById;
+DROP PROCEDURE IF EXISTS sp_deleteUserById //
 CREATE 
   PROCEDURE sp_deleteUserById(IN user_id INT)
   BEGIN
@@ -122,7 +122,7 @@ DELIMITER ;
 -- Procedimiento para la eliminacion de Productos --
 
 DELIMITER //
-DROP PROCEDURE IF EXISTS sp_deleteProductsById;
+DROP PROCEDURE IF EXISTS sp_deleteProductsById //
 CREATE 
   PROCEDURE sp_deleteProductsById(IN product_id INT)
   BEGIN

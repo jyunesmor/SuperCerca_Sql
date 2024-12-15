@@ -24,9 +24,7 @@ DROP USER IF EXISTS 'marite_56'@'%';
 CREATE USER 
   'marite_56'@'%'
   IDENTIFIED BY 'mari1310'; 
-GRANT SELECT, CREATE, UPDATE, DELETE ON supercerca.users TO 'marite_56'@'%';
-GRANT SELECT, CREATE, UPDATE, DELETE  ON supercerca.products TO 'marite_56'@'%';
 GRANT EXECUTE ON supercerca.* TO 'marite_56'@'%';
-GRANT SELECT ON supercerca.vw_listmostsaleproduct TO 'marite_56'@'%';
+GRANT SELECT ON supercerca.* TO 'marite_56'@'%';
 
 FLUSH PRIVILEGES;
