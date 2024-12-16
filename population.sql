@@ -182,12 +182,17 @@ VALUES
     (5,3),
     (5,7),
     (5,9),
-    (5,6);
-    
+    (5,6),
+    (4,1),
+    (4,8),
+    (4,6),
+    (4,7),
+    (4,3),
+    (4,2);    
 
 
-INSERT INTO order_purchase (total_order_price, order_created, id_cart, id_user, id_delivery)
-VALUES
-  (1299.99, supercerca.fx_get_date_random(), 1, 1, 1),  -- iPhone 15 Pro Max (user John Doe)
-  (1499.99, supercerca.fx_get_date_random(), 3, 2, 2),  -- MacBook Pro 14" (user Jane Smith)
-  (499.99, supercerca.fx_get_date_random(), 5, 3, 3); -- Sony PlayStation 5 (user Michael Johnson);
+-- INSERT INTO order_purchase (total_order_price, order_created, id_cart, id_user, id_delivery)
+-- VALUES
+--   (1299.99, supercerca.fx_get_date_random(), 1, 1, 1),  -- iPhone 15 Pro Max (user John Doe)
+--   (1499.99, supercerca.fx_get_date_random(), 3, 2, 2),  -- MacBook Pro 14" (user Jane Smith)
+--   (499.99, supercerca.fx_get_date_random(), 5, 3, 3); -- Sony PlayStation 5 (user Michael Johnson);

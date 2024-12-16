@@ -37,7 +37,7 @@ CREATE
   END //
 DELIMITER;
 
--- Funcion para determinar el valor total del carrito por Id Carrito
+-- Funcion para elegir aleatoriamente una fecha para las ordenes
 DELIMITER //
 DROP FUNCTION IF EXISTS fx_get_date_random //
 CREATE FUNCTION fx_get_date_random() RETURNS DATE

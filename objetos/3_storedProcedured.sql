@@ -133,3 +133,19 @@ CREATE
  END //
 DELIMITER ;
 
+-- Procedimiento para la creacion de Ordenes --
+DELIMITER //
+DROP PROCEDURE IF EXISTS  sp_create_order //
+CREATE 
+  PROCEDURE sp_create_order(IN _id_cart INT,IN _id_user INT,IN _id_delivery INT)
+  BEGIN
+    DECLARE _date_order DATE;
+    DECLARE _total_price_cart DECIMAL(10,2);
+    SELECT supercerca.fx_get_date_random() INTO _date_order;
+    SELECT supercerca.fx_GetTotalPriceCart(_id_cart) INTO _total_price_cart;
+    START TRANSACTION;
+    INSERT INTO order_purchase (total_order_price, order_created, id_cart, id_user, id_delivery)
+    VALUES(_total_price_cart,_date_order,_id_cart,_id_user,_id_delivery);
+    COMMIT;
+  END //
+DELIMITER ;

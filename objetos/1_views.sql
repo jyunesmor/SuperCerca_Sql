@@ -17,7 +17,6 @@ CREATE
       USING(id_company)
     ORDER BY name_company;
 
-
 --  Esta View nos muestra la cantidad Productos adquiridos por cada Usuario
 
 DROP VIEW IF EXISTS  vw_QuantityProductByUsers;
@@ -35,7 +34,6 @@ CREATE
         ON c.id_cart = ci.cart_id
     GROUP BY      
        ci.cart_id; 
-
 
 --  Esta View nos muestra los Productos mas Vendidos de manera Descendente
 
@@ -59,8 +57,6 @@ CREATE
     ORDER BY 
         Cant_Productos_Mas_vendidos DESC;
         
-        
-        
 --  Esta View mostrara el listado de compras detalladas con sus usuarios 
 
 DROP VIEW IF EXISTS vw_list_history_orders;
@@ -73,18 +69,29 @@ CREATE
   , concat(u.last_name_user,', ',u.name_user) AS Nombre_y_Apellido
   , u.email AS Correo_electronico
   , o.order_created AS Fecha_pedido
-  , o.total_order_price AS Valor_Total_Pedido
-  , ci.products_id AS Codigo_Producto
-  , p.name_product AS Nombre_Producto
-  , p.price_product AS Precio_Producto
+  , fx_GetTotalPriceCart(c.id_cart) AS Valor_Total_Pedido
   FROM supercerca.order_purchase AS o
   INNER JOIN supercerca.cart AS c
     USING(id_cart)
   INNER JOIN supercerca.users AS u
     USING(id_user)
-  INNER JOIN supercerca.cart_items AS ci
-    ON c.id_cart = ci.cart_id
-  INNER JOIN supercerca.products AS p
-    ON ci.products_id = p.id_product
   ORDER BY o.id_order;
-    
+  
+DROP VIEW IF EXISTS  vw_sales_by_company;
+CREATE 
+  OR REPLACE 
+  VIEW vw_sales_by_company 
+  AS   
+    SELECT 
+        co.name_company AS Nombre_Empresa
+    ,   count(co.id_company) AS Cantidad_Ventas_por_Empresa
+    FROM supercerca.users AS u
+    INNER JOIN supercerca.cart AS c
+        ON u.id_user = c.users_id    
+    INNER JOIN supercerca.cart_items AS ci
+        ON c.id_cart = ci.cart_id
+    INNER JOIN supercerca.products AS p 
+        ON  ci.products_id = p.id_product 
+   INNER JOIN supercerca.company AS co
+      USING(id_company)
+  GROUP BY Nombre_Empresa;
