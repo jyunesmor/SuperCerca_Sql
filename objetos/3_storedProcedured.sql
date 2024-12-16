@@ -77,12 +77,12 @@ DELIMITER ;
 DELIMITER //
 DROP PROCEDURE IF EXISTS  sp_createUser //
 CREATE 
-  PROCEDURE sp_createUser(IN _id_user INT, IN _name VARCHAR(256), IN _last_name VARCHAR(256), IN _identification_id VARCHAR(15), 
+  PROCEDURE sp_createUser(IN _name VARCHAR(256), IN _last_name VARCHAR(256), IN _identification_id VARCHAR(15), 
                              IN _email VARCHAR(256), IN _password VARCHAR(256), IN _address_id INT, IN _payment_id INT)
   BEGIN
     START TRANSACTION;
-    INSERT INTO users(id_user,name_user, last_name_user, identification_id, email, user_password, id_address, id_payment)
-    VALUES(_id_user,_name, _last_name, _identification_id, _email, _password, _address_id, _payment_id);
+    INSERT INTO users(name_user, last_name_user, identification_id, email, user_password, id_address, id_payment)
+    VALUES(_name, _last_name, _identification_id, _email, _password, _address_id, _payment_id);
     COMMIT;
   END //
 DELIMITER ;
@@ -92,12 +92,12 @@ DELIMITER ;
 DELIMITER //
 DROP PROCEDURE IF EXISTS  sp_createProducts //
 CREATE 
-  PROCEDURE sp_createProducts(IN _id_product INT, IN _name_product VARCHAR(256), IN _price_product DECIMAL(10,2), IN _description_product VARCHAR(256), 
+  PROCEDURE sp_createProducts(IN _name_product VARCHAR(256), IN _price_product DECIMAL(10,2), IN _description_product VARCHAR(256), 
                              IN _id_company INT)
   BEGIN
     START TRANSACTION;
-    INSERT INTO products(id_product,name_product, price_product, description_product, id_company)
-    VALUES(_id_product,_name_product, _price_product, _description_product, _id_company);
+    INSERT INTO products(name_product, price_product, description_product, id_company)
+    VALUES(_name_product, _price_product, _description_product, _id_company);
     COMMIT;
   END //
 DELIMITER ;
@@ -142,7 +142,7 @@ CREATE
     DECLARE _date_order DATE;
     DECLARE _total_price_cart DECIMAL(10,2);
     SELECT supercerca.fx_get_date_random() INTO _date_order;
-    SELECT supercerca.fx_GetTotalPriceCart(_id_cart) INTO _total_price_cart;
+    SELECT supercerca.fx_get_total_price_cart(_id_cart) INTO _total_price_cart;
     START TRANSACTION;
     INSERT INTO order_purchase (total_order_price, order_created, id_cart, id_user, id_delivery)
     VALUES(_total_price_cart,_date_order,_id_cart,_id_user,_id_delivery);

@@ -3,9 +3,9 @@ USE supercerca;
 
 -- Funcion para determinar obtener nombre de la empresa segun su Id
 DELIMITER //
-DROP FUNCTION IF EXISTS fx_GetNameCompany;    
-CREATE 
-  FUNCTION fx_GetNameCompany(company_id INT)
+DROP FUNCTION IF EXISTS fx_get_name_company //
+CREATE
+  FUNCTION fx_get_name_company(company_id INT)
   RETURNS VARCHAR(512)
   READS SQL DATA
   BEGIN
@@ -19,9 +19,9 @@ DELIMITER;
 
 -- Funcion para determinar el valor total del carrito por Id Carrito
 DELIMITER //
-DROP FUNCTION IF EXISTS  fx_GetTotalPriceCart // 
+DROP FUNCTION IF EXISTS  fx_get_total_price_cart //
 CREATE 
-  FUNCTION fx_GetTotalPriceCart(_id_cart INT)
+  FUNCTION fx_get_total_price_cart(_id_cart INT)
   RETURNS DECIMAL(10,2)
   DETERMINISTIC
   BEGIN

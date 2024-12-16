@@ -69,7 +69,7 @@ CREATE
   , concat(u.last_name_user,', ',u.name_user) AS Nombre_y_Apellido
   , u.email AS Correo_electronico
   , o.order_created AS Fecha_pedido
-  , fx_GetTotalPriceCart(c.id_cart) AS Valor_Total_Pedido
+  , supercerca.fx_get_total_price_cart(c.id_cart) AS Valor_Total_Pedido
   FROM supercerca.order_purchase AS o
   INNER JOIN supercerca.cart AS c
     USING(id_cart)
