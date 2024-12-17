@@ -2,7 +2,6 @@
 USE supercerca;
 
 -- Validación de  que no pueda cargarse un nuevo usuario con Igual Id ni email
-
 DELIMITER //
 DROP TRIGGER IF EXISTS check_user_exists;
 CREATE 
@@ -37,7 +36,6 @@ CREATE
   END //
 DELIMITER ;
 
-
 -- Trigger to enforce minimum password length
 DELIMITER //
 CREATE TRIGGER before_user_insert_password_check BEFORE INSERT ON users
@@ -59,40 +57,6 @@ BEGIN
     IF NEW.identification_id REGEXP '^[0-9]{5,15}$' = 0 THEN
         SIGNAL SQLSTATE '45000' 
         SET MESSAGE_TEXT = 'Invalid identification number format';
-    END IF;
-END //
-DELIMITER ;
-
--- Trigger to automatically set default payment method if not specified
-DELIMITER //
-CREATE TRIGGER before_user_insert_default_payment BEFORE INSERT ON users
-FOR EACH ROW
-BEGIN
-    IF NEW.id_payment IS NULL THEN
-        -- Insert a default payment method if none is specified
-        INSERT INTO payment_methods (payment_type) VALUES ('Default');
-        SET NEW.id_payment = LAST_INSERT_ID();
-    END IF;
-END //
-DELIMITER ;
-
-
--- Trigger to prevent deletion of users with active orders
-DELIMITER //
-CREATE TRIGGER before_user_delete_check BEFORE DELETE ON users
-FOR EACH ROW
-BEGIN
-    DECLARE active_orders INT;
-    
-    -- Check if user has any pending or recent orders
-    SELECT COUNT(*) INTO active_orders
-    FROM order_purchase
-    WHERE id_user = OLD.id_user 
-    AND order_created >= DATE_SUB(CURRENT_DATE, INTERVAL 365 DAY);
-    
-    IF active_orders > 0 THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Cannot delete user with recent orders';
     END IF;
 END //
 DELIMITER ;
