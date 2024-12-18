@@ -434,16 +434,84 @@ Estas funciones se utilizan principalmente para:
 
 Las funciones están diseñadas para ser reutilizables y mantener la consistencia en el formato y cálculos a través de toda la aplicación.
 
-### Triggers
+# Documentación de Triggers de Base de Datos
 
-#### 1. check_user_exists
-- **Propósito**: Prevenir el registro de usuarios con ID o correo electrónico duplicados
-- **Puntos de Activación**:
-  - Antes de insertar un nuevo usuario
-- **Validaciones**:
-  - Verifica si el ID de usuario ya existe
-  - Verifica si el correo electrónico ya está registrado
-- **Acción**: Genera un error con un mensaje descriptivo si se encuentran duplicados
+## 1. Verificación de Usuario Existente (check_user_exists)
+
+### Descripción
+Trigger que verifica la duplicidad de usuarios antes de realizar una inserción en la tabla `users`.
+
+### Detalles Técnicos
+- **Momento de Ejecución**: BEFORE INSERT
+- **Nivel**: FOR EACH ROW
+- **Tabla**: users
+
+### Verificaciones
+1. **ID de Usuario**:
+   - Verifica si el ID ya existe en la tabla
+   - Lanza error si encuentra duplicado
+   - Mensaje: "El usuario con el ID ingresado ya existe."
+
+2. **Correo Electrónico**:
+   - Verifica si el email ya está registrado
+   - Lanza error si encuentra duplicado
+   - Mensaje: "El correo electrónico ya está registrado."
+
+## 2. Validación de Contraseña (before_user_insert_password_check)
+
+### Descripción
+Trigger que verifica la longitud mínima de la contraseña antes de insertar un nuevo usuario.
+
+### Detalles Técnicos
+- **Momento de Ejecución**: BEFORE INSERT
+- **Nivel**: FOR EACH ROW
+- **Tabla**: users
+
+### Validación
+- Verifica que la contraseña tenga al menos 6 caracteres
+- Lanza error si la longitud es menor
+- Mensaje: "Password must be at least 6 characters long"
+
+## 3. Validación de Número de Identificación (before_user_insert_id_check)
+
+### Descripción
+Trigger que valida el formato del número de identificación del usuario.
+
+### Detalles Técnicos
+- **Momento de Ejecución**: BEFORE INSERT
+- **Nivel**: FOR EACH ROW
+- **Tabla**: users
+
+### Validación
+- Utiliza expresión regular: `^[0-9]{5,15}$`
+- Verifica que:
+  - Solo contenga números
+  - Tenga entre 5 y 15 dígitos
+- Lanza error si el formato es inválido
+- Mensaje: "Invalid identification number format"
+
+## Características Comunes
+
+Todos los triggers:
+- Utilizan la sintaxis DELIMITER para su definición
+- Incluyen manejo de errores con SIGNAL SQLSTATE
+- Se ejecutan antes de la inserción (BEFORE INSERT)
+- Validan datos críticos del usuario
+- Previenen la inserción de datos inválidos
+
+## Propósito en el Sistema
+
+Estos triggers aseguran:
+1. La unicidad de usuarios en el sistema
+2. La seguridad de las contraseñas
+3. La validez de los documentos de identidad
+4. La integridad de los datos de usuario
+
+## Recomendaciones de Uso
+
+- Asegurar que las aplicaciones cliente manejen apropiadamente los mensajes de error
+- Considerar estos requisitos al diseñar formularios de registro
+- Documentar los formatos requeridos en la interfaz de usuario
 
 ## Ejemplos de Uso
 
