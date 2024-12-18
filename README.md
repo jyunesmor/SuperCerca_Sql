@@ -204,15 +204,71 @@ La vista conecta:
 
 Los resultados se agrupan por nombre de empresa.
 
+
+
+## 1. Vista de Productos por Empresa (vw_products_by_company)
+
+Esta vista muestra el catálogo de productos organizados por empresa, incluyendo:
+- Nombre del producto
+- Nombre de la empresa
+- Precio del producto
+
+La vista conecta:
+- `products` → `company`
+
+Los resultados se ordenan alfabéticamente por nombre de empresa.
+
+## 2. Vista de Cantidad de Productos por Usuario (vw_quantity_product_by_users)
+
+Esta vista proporciona un análisis del comportamiento de compra de los usuarios, mostrando:
+- Nombre del usuario
+- Cantidad total de productos adquiridos por cada usuario
+
+La vista conecta:
+- `users` → `cart` → `cart_items`
+
+Los resultados se agrupan por carrito de compra (cart_id), permitiendo ver el volumen de compras por usuario.
+
+## 3. Vista de Productos Más Vendidos (vw_List_Most_Sale_Product)
+
+Esta vista genera un ranking de productos según su popularidad, mostrando:
+- Nombre del producto
+- Cantidad de ventas de cada producto
+
+La vista conecta:
+- `users` → `cart` → `cart_items` → `products`
+
+Los resultados se:
+- Agrupan por nombre de producto
+- Ordenan por cantidad de ventas en orden descendente
+
+## 4. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
+
+Esta vista proporciona métricas comerciales clave por empresa:
+- Nombre de la empresa
+- Cantidad de productos vendidos
+- Valor total de ventas
+
+La vista conecta:
+- `users` → `cart` → `cart_items` → `products` → `company`
+
+Los resultados se:
+- Agrupan por nombre de empresa
+- Ordenan por cantidad de productos vendidos en orden descendente
+
 ## Detalles Técnicos
 
-Todas las vistas utilizan:
-- El esquema `supercerca`
-- Operaciones `INNER JOIN` para asegurar la integridad de los datos
-- Alias apropiados para mejorar la legibilidad
-- Nombres de columnas significativos en español
+Todas las vistas:
+- Utilizan el esquema `supercerca` (excepto la primera vista que usa el esquema por defecto)
+- Implementan `INNER JOIN` para garantizar la integridad referencial
+- Usan alias de tabla para mejorar la legibilidad
+- Proporcionan nombres de columnas descriptivos en español
 
-Estas vistas están diseñadas para proporcionar inteligencia empresarial y capacidades de informes para el sistema, centrándose en el análisis de ventas y seguimiento de pedidos.
+Estas vistas están diseñadas para:
+- Análisis de ventas
+- Seguimiento de productos
+- Métricas de rendimiento empresarial
+- Comportamiento de usuarios
 
 ### Procedimientos Almacenados
 
