@@ -362,12 +362,77 @@ Todos los procedimientos:
 - Incluyen manejo de DELIMITER para su correcta definición
 - Los procedimientos de eliminación desactivan temporalmente la verificación de claves foráneas
 
-### Funciones
+# Documentación de Funciones
 
-#### 1. fx_GetNameCompany
-- **Propósito**: Recuperar el nombre completo de una empresa con su ID fiscal
-- **Entrada**: `company_id` (INT)
-- **Devuelve**: Nombre de la empresa con el ID fiscal entre paréntesis
+## 1. Obtener Nombre de Empresa (fx_get_name_company)
+
+### Descripción
+Función que retorna el nombre completo de una empresa incluyendo su número de identificación fiscal.
+
+### Detalles Técnicos
+- **Tipo**: `READS SQL DATA`
+- **Parámetros de entrada**: 
+  - `company_id` (INT): ID de la empresa
+- **Retorna**: VARCHAR(512)
+- **Formato de retorno**: "Nombre Empresa (Número Fiscal)"
+
+### Funcionamiento
+- Realiza una consulta a la tabla `company`
+- Concatena el nombre de la empresa con su número de identificación fiscal
+- Retorna el string formateado
+
+## 2. Calcular Valor Total del Carrito (fx_get_total_price_cart)
+
+### Descripción
+Función que calcula el valor total de los productos en un carrito de compras específico.
+
+### Detalles Técnicos
+- **Tipo**: `DETERMINISTIC`
+- **Parámetros de entrada**: 
+  - `_id_cart` (INT): ID del carrito
+- **Retorna**: DECIMAL(10,2)
+
+### Funcionamiento
+- Realiza joins entre las tablas:
+  - `users` → `cart` → `cart_items` → `products`
+- Calcula la suma total de los precios de productos
+- Filtra por el ID de carrito específico
+- Retorna el valor total calculado
+
+## 3. Generar Fecha Aleatoria (fx_get_date_random)
+
+### Descripción
+Función que genera una fecha aleatoria entre el 1 de enero de 2020 y el 13 de diciembre de 2024.
+
+### Detalles Técnicos
+- **Tipo**: `NO SQL`
+- **Parámetros de entrada**: Ninguno
+- **Retorna**: DATE
+
+### Funcionamiento
+- Utiliza `DATE_ADD` y `RAND()` para generar una fecha aleatoria
+- Rango de fechas:
+  - Fecha inicial: '2020-01-01'
+  - Fecha final: '2024-12-13'
+- Calcula un intervalo aleatorio de días dentro de este rango
+
+## Características Comunes
+
+Todas las funciones:
+- Incluyen manejo de DELIMITER
+- Tienen declaración DROP FUNCTION IF EXISTS para evitar errores
+- Especifican claramente el tipo de datos de retorno
+- Incluyen características de determinismo apropiadas
+- Utilizan declaraciones de variables locales cuando es necesario
+
+## Uso en el Sistema
+
+Estas funciones se utilizan principalmente para:
+1. Formatear información de empresas
+2. Calcular totales de carritos de compra
+3. Generar fechas aleatorias para órdenes de prueba o simulación
+
+Las funciones están diseñadas para ser reutilizables y mantener la consistencia en el formato y cálculos a través de toda la aplicación.
 
 ### Triggers
 
