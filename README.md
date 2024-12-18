@@ -153,26 +153,66 @@ Con esta base de datos, un equipo de desarrollo puede crear una aplicación de c
 Este proyecto implementa un sistema de gestión de base de datos integral para una plataforma de comercio electrónico, que incluye vistas, procedimientos almacenados, funciones y triggers para administrar usuarios, productos y pedidos.
 
 
-
-
 ## Componentes de la Base de Datos
 
 ### Vistas
 
-#### 1. user_orders
-- **Propósito**: Recupera los detalles de pedidos del usuario actual
-- **Columnas**:
-  - `order_id`: Identificador único del pedido
-  - `product_name`: Nombre del producto comprado
-  - `total_price`: Precio total del pedido
-  - `order_date`: Fecha de creación del pedido
+## 1. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
 
-#### 2. products_by_company
-- **Propósito**: Lista los productos con su empresa correspondiente y precio
-- **Columnas**:
-  - `Product`: Nombre del producto
-  - `Company`: Nombre de la empresa que vende el producto
-  - `Price`: Precio del producto
+Esta vista agrega y muestra estadísticas de ventas para cada empresa, mostrando:
+- Nombre de la empresa
+- Número total de productos vendidos
+- Valor total de ventas
+
+La vista une múltiples tablas:
+- `users` → `cart` → `cart_items` → `products` → `company`
+
+Los resultados se agrupan por nombre de empresa y se ordenan por cantidad de productos vendidos en orden descendente.
+
+## 2. Vista de Historial de Pedidos (vw_list_history_orders)
+
+Esta vista crea un informe completo del historial de pedidos que muestra:
+- Número de orden
+- Nombre completo del cliente (formateado como "apellido, nombre")
+- Correo electrónico del cliente
+- Método de pago
+- Número de teléfono
+- Fecha del pedido
+- Valor total del pedido (calculado usando la función personalizada `fx_get_total_price_cart`)
+- Nombre de la empresa
+
+La vista combina datos de múltiples tablas:
+- `order_purchase`
+- `cart`
+- `users`
+- `payment_methods`
+- `address`
+- `phone`
+- `delivery`
+- `company`
+
+Los resultados se ordenan por ID de orden.
+
+## 3. Vista Resumen de Ventas por Empresa (vw_sales_by_company)
+
+Esta vista proporciona un resumen simplificado de ventas por empresa:
+- Nombre de la empresa
+- Número total de ventas por empresa
+
+La vista conecta:
+- `users` → `cart` → `cart_items` → `products` → `company`
+
+Los resultados se agrupan por nombre de empresa.
+
+## Detalles Técnicos
+
+Todas las vistas utilizan:
+- El esquema `supercerca`
+- Operaciones `INNER JOIN` para asegurar la integridad de los datos
+- Alias apropiados para mejorar la legibilidad
+- Nombres de columnas significativos en español
+
+Estas vistas están diseñadas para proporcionar inteligencia empresarial y capacidades de informes para el sistema, centrándose en el análisis de ventas y seguimiento de pedidos.
 
 ### Procedimientos Almacenados
 
