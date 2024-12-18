@@ -206,7 +206,7 @@ Los resultados se agrupan por nombre de empresa.
 
 
 
-## 1. Vista de Productos por Empresa (vw_products_by_company)
+## 4. Vista de Productos por Empresa (vw_products_by_company)
 
 Esta vista muestra el catálogo de productos organizados por empresa, incluyendo:
 - Nombre del producto
@@ -218,7 +218,7 @@ La vista conecta:
 
 Los resultados se ordenan alfabéticamente por nombre de empresa.
 
-## 2. Vista de Cantidad de Productos por Usuario (vw_quantity_product_by_users)
+## 5. Vista de Cantidad de Productos por Usuario (vw_quantity_product_by_users)
 
 Esta vista proporciona un análisis del comportamiento de compra de los usuarios, mostrando:
 - Nombre del usuario
@@ -229,7 +229,7 @@ La vista conecta:
 
 Los resultados se agrupan por carrito de compra (cart_id), permitiendo ver el volumen de compras por usuario.
 
-## 3. Vista de Productos Más Vendidos (vw_List_Most_Sale_Product)
+## 6. Vista de Productos Más Vendidos (vw_List_Most_Sale_Product)
 
 Esta vista genera un ranking de productos según su popularidad, mostrando:
 - Nombre del producto
@@ -242,7 +242,7 @@ Los resultados se:
 - Agrupan por nombre de producto
 - Ordenan por cantidad de ventas en orden descendente
 
-## 4. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
+## 7. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
 
 Esta vista proporciona métricas comerciales clave por empresa:
 - Nombre de la empresa
@@ -270,51 +270,97 @@ Estas vistas están diseñadas para:
 - Métricas de rendimiento empresarial
 - Comportamiento de usuarios
 
-### Procedimientos Almacenados
+# Documentación de Procedimientos Almacenados (Stored Procedures)
 
-#### 1. sp_GetUserDetails
-- **Propósito**: Recuperar información completa del usuario, incluyendo detalles personales y de dirección
-- **Entrada**: `user_id` (INT)
-- **Devuelve**:
-  - ID de Identificación
+## 1. Obtención de Datos de Usuario (sp_GetUserDetails)
+
+Este procedimiento obtiene los datos detallados de un usuario específico:
+- **Parámetros de entrada**: 
+  - `user_id` (INT): ID del usuario
+- **Datos que retorna**:
+  - Documento de identidad
   - Nombre
   - Apellido
-  - Correo Electrónico
-  - Dirección
-  - Número de Calle
+  - Correo electrónico
+  - Dirección (calle, número)
   - Ciudad
-  - Estado/Provincia
+  - Provincia
 
-#### 2. sp_GetOrderDetails
-- **Propósito**: Obtener información detallada de un pedido específico
-- **Entrada**: `order_id` (INT)
-- **Devuelve**:
-  - ID de Pedido
-  - Precio Total del Pedido
-  - Fecha de Creación del Pedido
-  - Nombre del Usuario
-  - Apellido del Usuario
-  - Correo Electrónico del Usuario
-  - Nombre del Producto
-  - ID de Empresa de Entrega
+Realiza joins con las tablas:
+- `users` → `address` → `city` → `state`
 
-#### 3. sp_UpdateProductPrice
-- **Propósito**: Actualizar el precio de un producto específico
-- **Entradas**:
+## 2. Procedimientos de Actualización (UPDATE)
+
+### 2.1. Actualizar Precio de Producto (sp_UpdateProductPrice)
+- **Parámetros**:
+  - `product_id` (INT): ID del producto
+  - `new_price` (DECIMAL): Nuevo precio
+- **Función**: Actualiza el precio de un producto específico
+- Utiliza transacción para garantizar la integridad
+
+### 2.2. Actualizar Usuario (sp_updateUser)
+- **Parámetros**:
+  - `_id_user` (INT)
+  - `_name` (VARCHAR)
+  - `_last_name` (VARCHAR)
+  - `_identification_id` (VARCHAR)
+  - `_email` (VARCHAR)
+  - `_password` (VARCHAR)
+  - `_address_id` (INT)
+  - `_payment_id` (INT)
+- **Función**: Actualiza todos los campos de un usuario existente
+- Implementa transacción para seguridad de datos
+
+## 3. Procedimientos de Creación (CREATE)
+
+### 3.1. Crear Usuario Nuevo (sp_createUser)
+- **Parámetros**: Mismos que sp_updateUser (excepto _id_user)
+- **Función**: Inserta un nuevo registro en la tabla users
+- Utiliza transacción para garantizar la integridad
+
+### 3.2. Crear Productos Nuevos (sp_createProducts)
+- **Parámetros**:
+  - `_name_product` (VARCHAR)
+  - `_price_product` (DECIMAL)
+  - `_description_product` (VARCHAR)
+  - `_id_company` (INT)
+- **Función**: Inserta un nuevo producto en la base de datos
+
+### 3.3. Crear Orden (sp_create_order)
+- **Parámetros**:
+  - `_id_cart` (INT)
+  - `_id_user` (INT)
+  - `_id_delivery` (INT)
+- **Funcionalidad**:
+  - Utiliza función `fx_get_date_random()` para fecha
+  - Calcula precio total con `fx_get_total_price_cart()`
+  - Crea nueva orden de compra
+
+## 4. Procedimientos de Eliminación (DELETE)
+
+### 4.1. Eliminar Usuario (sp_deleteUserById)
+- **Parámetros**: 
+  - `user_id` (INT)
+- **Características**:
+  - Desactiva verificación de claves foráneas
+  - Utiliza transacción
+  - Elimina usuario del esquema supercerca
+
+### 4.2. Eliminar Producto (sp_deleteProductsById)
+- **Parámetros**: 
   - `product_id` (INT)
-  - `new_price` (DECIMAL)
+- **Características**:
+  - Similar a eliminación de usuario
+  - Desactiva verificación de claves foráneas
+  - Opera dentro de una transacción
 
-#### 4. sp_CreateUser
-- **Propósito**: Crear un nuevo usuario en el sistema
-- **Entradas**:
-  - `id_user` (INT)
-  - `name` (VARCHAR)
-  - `last_name` (VARCHAR)
-  - `identification_id` (VARCHAR)
-  - `email` (VARCHAR)
-  - `password` (VARCHAR)
-  - `address_id` (INT)
-  - `payment_id` (INT)
+## Detalles Técnicos
+
+Todos los procedimientos:
+- Utilizan el esquema `supercerca`
+- Implementan transacciones para garantizar la integridad de datos
+- Incluyen manejo de DELIMITER para su correcta definición
+- Los procedimientos de eliminación desactivan temporalmente la verificación de claves foráneas
 
 ### Funciones
 
