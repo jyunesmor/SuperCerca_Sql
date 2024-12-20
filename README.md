@@ -344,7 +344,7 @@ Estas vistas están diseñadas para:
 - Comportamiento de usuarios
 
 ---
-
+<a name="stored-procedure"></a>
 ### Stored Procedure
 
 ### 1. Obtención de Datos de Usuario (sp_GetUserDetails)
