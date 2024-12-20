@@ -19,7 +19,7 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 
 # Database Objects
 
-## [Views][1]
+## [Views](#views)
 
 - `vw_list_total_sale_by_company`
 - `vw_list_history_orders`
@@ -183,7 +183,8 @@ Este proyecto implementa un sistema de gestión de base de datos integral para u
 
 # Componentes de la Base de Datos
 
-[1]: ## Views
+<p id:'views'></p>
+## Views
 
 #### 1. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
 
