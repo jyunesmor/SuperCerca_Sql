@@ -183,7 +183,7 @@ Este proyecto implementa un sistema de gestión de base de datos integral para u
 
 # Componentes de la Base de Datos
 
-<p id='views'></p>
+<a name="views"></a>
 ## Views
 
 #### 1. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
