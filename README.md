@@ -26,7 +26,7 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 - `vw_list_most_sale_product`
 - `vw_quantity_product_by_users`
 
-## [Stored Procedure](#stored-procedure)
+## [Stored Procedure](#sp)
 
 - `sp_UpdateProductPrice`
 - `sp_updateUser`
@@ -344,7 +344,7 @@ Estas vistas están diseñadas para:
 - Comportamiento de usuarios
 
 ---
-<a name="stored-procedure"></a>
+<a name="sp"></a>
 ### Stored Procedure
 
 ### 1. Obtención de Datos de Usuario (sp_GetUserDetails)
