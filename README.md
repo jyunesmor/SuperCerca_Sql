@@ -1,10 +1,10 @@
 <div align="center">
-<img src="./img/logo700.png" style="width:500px"  />
+ <img src="./img/logo700.png" style="width:500px"  />
 <h1>SuperCerca_Sql</h1>
 <h2>Modelo de Base de Datos para E-commerce</h2>
 <i>SuperCerca_Coder_MySql - Yunes Mor, Juan Manuel Comision 59430</i>
 </div>
-<hr>
+<hr>P
 Modelo de Base de Datos para E-commerce
 
 Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
@@ -16,6 +16,37 @@ Este modelo de base de datos soporta una aplicación de comercio electrónico do
 <center><h2>Modelo DER Final en Mysql para E-commerce</h2></center>
 
 ![DER Final](https://github.com/user-attachments/assets/68cd53c6-8832-49a5-b7aa-f5689fb2d9ec)
+
+# Database Objects
+
+## [Views](#views)
+
+- `vw_list_total_sale_by_company`
+- `vw_list_history_orders`
+- `vw_list_most_sale_product`
+- `vw_quantity_product_by_users`
+
+## [Stored Procedure](#stored-procedure)
+
+- `sp_UpdateProductPrice`
+- `sp_updateUser`
+- `sp_createUser`
+- `sp_createProducts`
+- `sp_deleteUserById`
+- `sp_deleteProductsById`
+- `sp_create_order`
+
+## [Functions](#function)
+
+- `fx_get_name_company`
+- `fx_get_total_price_cart`
+- `fx_get_date_random`
+
+## [Triggers](#triggers)
+
+- `check_user_exists`
+- `before_user_insert_password_check`
+- `before_user_insert_id_check`
 
 <h2 align="center">Tablas y Relaciones</h2>
 
@@ -144,34 +175,46 @@ Este modelo de datos proporciona una estructura completa para gestionar un siste
 
 Con esta base de datos, un equipo de desarrollo puede crear una aplicación de comercio electrónico que gestione todas las operaciones mencionadas, ofreciendo una experiencia de compra y entrega fluida para los usuarios.
 
-
-
 # Sistema de Gestión de Base de Datos de E-Commerce
 
 ## Descripción General
 
 Este proyecto implementa un sistema de gestión de base de datos integral para una plataforma de comercio electrónico, que incluye vistas, procedimientos almacenados, funciones y triggers para administrar usuarios, productos y pedidos.
 
+# Componentes de la Base de Datos
 
-## Componentes de la Base de Datos
+## Views
 
-### Vistas
-
-## 1. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
+#### 1. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
 
 Esta vista agrega y muestra estadísticas de ventas para cada empresa, mostrando:
+
 - Nombre de la empresa
 - Número total de productos vendidos
 - Valor total de ventas
 
 La vista une múltiples tablas:
+
 - `users` → `cart` → `cart_items` → `products` → `company`
 
 Los resultados se agrupan por nombre de empresa y se ordenan por cantidad de productos vendidos en orden descendente.
 
-## 2. Vista de Historial de Pedidos (vw_list_history_orders)
+```sql
+-- Obtener Listado de Ventas por Compañia en Volúmen e Importe
+
+SELECT * FROM supercerca.vw_list_sale_by_company;
+```
+
+Resultado de la consulta
+
+<p align="center">
+  <img src="image-5.png" alt="alt text">
+</p>
+
+#### 2. Vista de Historial de Pedidos (vw_list_history_orders)
 
 Esta vista crea un informe completo del historial de pedidos que muestra:
+
 - Número de orden
 - Nombre completo del cliente (formateado como "apellido, nombre")
 - Correo electrónico del cliente
@@ -182,6 +225,7 @@ Esta vista crea un informe completo del historial de pedidos que muestra:
 - Nombre de la empresa
 
 La vista combina datos de múltiples tablas:
+
 - `order_purchase`
 - `cart`
 - `users`
@@ -193,89 +237,120 @@ La vista combina datos de múltiples tablas:
 
 Los resultados se ordenan por ID de orden.
 
-## 3. Vista Resumen de Ventas por Empresa (vw_sales_by_company)
+```sql
+-- Obtener Listado Hitstorial de Ordenes
 
-Esta vista proporciona un resumen simplificado de ventas por empresa:
-- Nombre de la empresa
-- Número total de ventas por empresa
+SELECT * FROM supercerca.vw_list_history_orders;
+```
 
-La vista conecta:
-- `users` → `cart` → `cart_items` → `products` → `company`
+Resultado de la consulta
 
-Los resultados se agrupan por nombre de empresa.
+<p align="center">
+  <img src="image-1.png" alt="alt text">
+</p>
 
-
-
-## 4. Vista de Productos por Empresa (vw_products_by_company)
+#### 3. Vista de Productos por Empresa (vw_products_by_company)
 
 Esta vista muestra el catálogo de productos organizados por empresa, incluyendo:
+
 - Nombre del producto
 - Nombre de la empresa
 - Precio del producto
 
 La vista conecta:
+
 - `products` → `company`
 
 Los resultados se ordenan alfabéticamente por nombre de empresa.
 
-## 5. Vista de Cantidad de Productos por Usuario (vw_quantity_product_by_users)
+```sql
+-- Obtener Listado Hitstorial de Ordenes
+
+SELECT * FROM supercerca.vw_products_by_company;
+```
+
+Resultado de la consulta
+
+<p align="center">
+  <img src="image-2.png" alt="alt text">
+</p>
+
+#### 4. Vista de Cantidad de Productos por Usuario (vw_quantity_product_by_users)
 
 Esta vista proporciona un análisis del comportamiento de compra de los usuarios, mostrando:
+
 - Nombre del usuario
 - Cantidad total de productos adquiridos por cada usuario
 
 La vista conecta:
+
 - `users` → `cart` → `cart_items`
 
 Los resultados se agrupan por carrito de compra (cart_id), permitiendo ver el volumen de compras por usuario.
 
-## 6. Vista de Productos Más Vendidos (vw_List_Most_Sale_Product)
+```sql
+-- Obtener Listado Hitstorial de Ordenes
+
+SELECT * FROM supercerca.vw_quantity_product_by_users;
+```
+
+Resultado de la consulta
+
+<p align="center">
+  <img src="image-3.png" alt="alt text">
+</p>
+
+#### 5. Vista de Productos Más Vendidos (vw_List_Most_Sale_Product)
 
 Esta vista genera un ranking de productos según su popularidad, mostrando:
+
 - Nombre del producto
 - Cantidad de ventas de cada producto
 
 La vista conecta:
+
 - `users` → `cart` → `cart_items` → `products`
 
 Los resultados se:
+
 - Agrupan por nombre de producto
 - Ordenan por cantidad de ventas en orden descendente
 
-## 7. Vista de Ventas Totales por Empresa (vw_list_total_sale_by_company)
+```sql
+-- Obtener Listado Hitstorial de Ordenes
 
-Esta vista proporciona métricas comerciales clave por empresa:
-- Nombre de la empresa
-- Cantidad de productos vendidos
-- Valor total de ventas
+SELECT * FROM supercerca.vw_List_Most_Sale_Product;
+```
 
-La vista conecta:
-- `users` → `cart` → `cart_items` → `products` → `company`
+Resultado de la consulta
 
-Los resultados se:
-- Agrupan por nombre de empresa
-- Ordenan por cantidad de productos vendidos en orden descendente
-
-## Detalles Técnicos
+<p align="center">
+  <img src="image-4.png" alt="alt text">
+</p>
 
 Todas las vistas:
+
 - Utilizan el esquema `supercerca` (excepto la primera vista que usa el esquema por defecto)
 - Implementan `INNER JOIN` para garantizar la integridad referencial
 - Usan alias de tabla para mejorar la legibilidad
 - Proporcionan nombres de columnas descriptivos en español
 
 Estas vistas están diseñadas para:
+
 - Análisis de ventas
 - Seguimiento de productos
 - Métricas de rendimiento empresarial
 - Comportamiento de usuarios
 
-# Documentación de Procedimientos Almacenados (Stored Procedures)
+---
 
-## 1. Obtención de Datos de Usuario (sp_GetUserDetails)
+### Stored Procedure
+
+### 1. Obtención de Datos de Usuario (sp_GetUserDetails)
 
 Este procedimiento obtiene los datos detallados de un usuario específico:
-- **Parámetros de entrada**: 
+
+- **Parámetros de entrada**:
   - `user_id` (INT): ID del usuario
 - **Datos que retorna**:
   - Documento de identidad
@@ -287,18 +362,21 @@ Este procedimiento obtiene los datos detallados de un usuario específico:
   - Provincia
 
 Realiza joins con las tablas:
+
 - `users` → `address` → `city` → `state`
 
-## 2. Procedimientos de Actualización (UPDATE)
+### 2. Procedimientos de Actualización (UPDATE)
 
-### 2.1. Actualizar Precio de Producto (sp_UpdateProductPrice)
+#### 2.1. Actualizar Precio de Producto (sp_UpdateProductPrice)
+
 - **Parámetros**:
   - `product_id` (INT): ID del producto
   - `new_price` (DECIMAL): Nuevo precio
 - **Función**: Actualiza el precio de un producto específico
 - Utiliza transacción para garantizar la integridad
 
-### 2.2. Actualizar Usuario (sp_updateUser)
+#### 2.2. Actualizar Usuario (sp_updateUser)
+
 - **Parámetros**:
   - `_id_user` (INT)
   - `_name` (VARCHAR)
@@ -311,14 +389,16 @@ Realiza joins con las tablas:
 - **Función**: Actualiza todos los campos de un usuario existente
 - Implementa transacción para seguridad de datos
 
-## 3. Procedimientos de Creación (CREATE)
+### 3. Procedimientos de Creación (CREATE)
 
-### 3.1. Crear Usuario Nuevo (sp_createUser)
-- **Parámetros**: Mismos que sp_updateUser (excepto _id_user)
+#### 3.1. Crear Usuario Nuevo (sp_createUser)
+
+- **Parámetros**: Mismos que sp_updateUser (excepto \_id_user)
 - **Función**: Inserta un nuevo registro en la tabla users
 - Utiliza transacción para garantizar la integridad
 
-### 3.2. Crear Productos Nuevos (sp_createProducts)
+#### 3.2. Crear Productos Nuevos (sp_createProducts)
+
 - **Parámetros**:
   - `_name_product` (VARCHAR)
   - `_price_product` (DECIMAL)
@@ -326,7 +406,8 @@ Realiza joins con las tablas:
   - `_id_company` (INT)
 - **Función**: Inserta un nuevo producto en la base de datos
 
-### 3.3. Crear Orden (sp_create_order)
+#### 3.3. Crear Orden (sp_create_order)
+
 - **Parámetros**:
   - `_id_cart` (INT)
   - `_id_user` (INT)
@@ -336,27 +417,30 @@ Realiza joins con las tablas:
   - Calcula precio total con `fx_get_total_price_cart()`
   - Crea nueva orden de compra
 
-## 4. Procedimientos de Eliminación (DELETE)
+### 4. Procedimientos de Eliminación (DELETE)
 
-### 4.1. Eliminar Usuario (sp_deleteUserById)
-- **Parámetros**: 
+#### 4.1. Eliminar Usuario (sp_deleteUserById)
+
+- **Parámetros**:
   - `user_id` (INT)
 - **Características**:
   - Desactiva verificación de claves foráneas
   - Utiliza transacción
   - Elimina usuario del esquema supercerca
 
-### 4.2. Eliminar Producto (sp_deleteProductsById)
-- **Parámetros**: 
+#### 4.2. Eliminar Producto (sp_deleteProductsById)
+
+- **Parámetros**:
   - `product_id` (INT)
 - **Características**:
   - Similar a eliminación de usuario
   - Desactiva verificación de claves foráneas
   - Opera dentro de una transacción
 
-## Detalles Técnicos
+### Detalles Técnicos
 
 Todos los procedimientos:
+
 - Utilizan el esquema `supercerca`
 - Implementan transacciones para garantizar la integridad de datos
 - Incluyen manejo de DELIMITER para su correcta definición
@@ -367,16 +451,19 @@ Todos los procedimientos:
 ## 1. Obtener Nombre de Empresa (fx_get_name_company)
 
 ### Descripción
+
 Función que retorna el nombre completo de una empresa incluyendo su número de identificación fiscal.
 
 ### Detalles Técnicos
+
 - **Tipo**: `READS SQL DATA`
-- **Parámetros de entrada**: 
+- **Parámetros de entrada**:
   - `company_id` (INT): ID de la empresa
 - **Retorna**: VARCHAR(512)
 - **Formato de retorno**: "Nombre Empresa (Número Fiscal)"
 
 ### Funcionamiento
+
 - Realiza una consulta a la tabla `company`
 - Concatena el nombre de la empresa con su número de identificación fiscal
 - Retorna el string formateado
@@ -384,15 +471,18 @@ Función que retorna el nombre completo de una empresa incluyendo su número de 
 ## 2. Calcular Valor Total del Carrito (fx_get_total_price_cart)
 
 ### Descripción
+
 Función que calcula el valor total de los productos en un carrito de compras específico.
 
 ### Detalles Técnicos
+
 - **Tipo**: `DETERMINISTIC`
-- **Parámetros de entrada**: 
+- **Parámetros de entrada**:
   - `_id_cart` (INT): ID del carrito
 - **Retorna**: DECIMAL(10,2)
 
 ### Funcionamiento
+
 - Realiza joins entre las tablas:
   - `users` → `cart` → `cart_items` → `products`
 - Calcula la suma total de los precios de productos
@@ -402,14 +492,17 @@ Función que calcula el valor total de los productos en un carrito de compras es
 ## 3. Generar Fecha Aleatoria (fx_get_date_random)
 
 ### Descripción
+
 Función que genera una fecha aleatoria entre el 1 de enero de 2020 y el 13 de diciembre de 2024.
 
 ### Detalles Técnicos
+
 - **Tipo**: `NO SQL`
 - **Parámetros de entrada**: Ninguno
 - **Retorna**: DATE
 
 ### Funcionamiento
+
 - Utiliza `DATE_ADD` y `RAND()` para generar una fecha aleatoria
 - Rango de fechas:
   - Fecha inicial: '2020-01-01'
@@ -419,6 +512,7 @@ Función que genera una fecha aleatoria entre el 1 de enero de 2020 y el 13 de d
 ## Características Comunes
 
 Todas las funciones:
+
 - Incluyen manejo de DELIMITER
 - Tienen declaración DROP FUNCTION IF EXISTS para evitar errores
 - Especifican claramente el tipo de datos de retorno
@@ -428,6 +522,7 @@ Todas las funciones:
 ## Uso en el Sistema
 
 Estas funciones se utilizan principalmente para:
+
 1. Formatear información de empresas
 2. Calcular totales de carritos de compra
 3. Generar fechas aleatorias para órdenes de prueba o simulación
@@ -439,15 +534,19 @@ Las funciones están diseñadas para ser reutilizables y mantener la consistenci
 ## 1. Verificación de Usuario Existente (check_user_exists)
 
 ### Descripción
+
 Trigger que verifica la duplicidad de usuarios antes de realizar una inserción en la tabla `users`.
 
 ### Detalles Técnicos
+
 - **Momento de Ejecución**: BEFORE INSERT
 - **Nivel**: FOR EACH ROW
 - **Tabla**: users
 
 ### Verificaciones
+
 1. **ID de Usuario**:
+
    - Verifica si el ID ya existe en la tabla
    - Lanza error si encuentra duplicado
    - Mensaje: "El usuario con el ID ingresado ya existe."
@@ -460,14 +559,17 @@ Trigger que verifica la duplicidad de usuarios antes de realizar una inserción 
 ## 2. Validación de Contraseña (before_user_insert_password_check)
 
 ### Descripción
+
 Trigger que verifica la longitud mínima de la contraseña antes de insertar un nuevo usuario.
 
 ### Detalles Técnicos
+
 - **Momento de Ejecución**: BEFORE INSERT
 - **Nivel**: FOR EACH ROW
 - **Tabla**: users
 
 ### Validación
+
 - Verifica que la contraseña tenga al menos 6 caracteres
 - Lanza error si la longitud es menor
 - Mensaje: "Password must be at least 6 characters long"
@@ -475,14 +577,17 @@ Trigger que verifica la longitud mínima de la contraseña antes de insertar un 
 ## 3. Validación de Número de Identificación (before_user_insert_id_check)
 
 ### Descripción
+
 Trigger que valida el formato del número de identificación del usuario.
 
 ### Detalles Técnicos
+
 - **Momento de Ejecución**: BEFORE INSERT
 - **Nivel**: FOR EACH ROW
 - **Tabla**: users
 
 ### Validación
+
 - Utiliza expresión regular: `^[0-9]{5,15}$`
 - Verifica que:
   - Solo contenga números
@@ -493,6 +598,7 @@ Trigger que valida el formato del número de identificación del usuario.
 ## Características Comunes
 
 Todos los triggers:
+
 - Utilizan la sintaxis DELIMITER para su definición
 - Incluyen manejo de errores con SIGNAL SQLSTATE
 - Se ejecutan antes de la inserción (BEFORE INSERT)
@@ -502,6 +608,7 @@ Todos los triggers:
 ## Propósito en el Sistema
 
 Estos triggers aseguran:
+
 1. La unicidad de usuarios en el sistema
 2. La seguridad de las contraseñas
 3. La validez de los documentos de identidad
@@ -523,3 +630,4 @@ SELECT * FROM products_by_company;
 
 -- Obtener pedidos del usuario actual
 SELECT * FROM user_orders;
+```
