@@ -711,7 +711,14 @@ Estos triggers aseguran:
 la forma de carga de Datos se hara a traves de sistema tradicional de INSERT INTO como veremos en el ejemplo
 
 ```sql
--- Obtener Listado Hitstorial de Ordenes
-
-SELECT * FROM supercerca.vw_List_Most_Sale_Product;
+-- Insertar Usuarios a la Base de Datos
+INSERT INTO users (name_user, last_name_user, identification_id, email, user_password, id_address, id_payment)
+VALUES
+  ('John', 'Doe', '12345678', 'johndoe@gmail.com', 'P@ssw0rd1', 1, 1),
+  ('Jane', 'Smith', '98765432', 'janesmith@outlook.com', 'S3cr3t2', 2, 3),
+  ('Michael', 'Johnson', '11223344', 'mjohnson@yahoo.com', 'P@ssw0rd3', 3,4),
+  ('Emily', 'Brown', '44556677', 'ebrown@hotmail.com', 'S3cr3t4', 4, 4),
+  ('David', 'Lee', '77889900', 'dlee@gmail.com', 'P@ssw0rd5', 5, 5),
+  ('Ethan', 'Davis', '55667788', 'edavis@yahoo.com', 'P@ssw0rd7', 7, 5),
+  ('Olivia', 'Miller', '88990011', 'omiller@hotmail.com', 'S3cr3t8', 5, 2);
 ```
