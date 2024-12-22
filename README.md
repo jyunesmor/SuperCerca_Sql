@@ -525,11 +525,11 @@ Todos los procedimientos:
 
 <a name="fx"></a>
 
-# Functions
+### Functions
 
-## 1. Obtener Nombre de Empresa (<a name="fx_get_name_company"></a>`fx_get_name_company`)
+#### 1. Obtener Nombre de Empresa (<a name="fx_get_name_company"></a>`fx_get_name_company`)
 
-### Descripción
+#### Descripción
 
 Función que retorna el nombre completo de una empresa incluyendo su número de identificación fiscal.
 
@@ -547,9 +547,9 @@ Función que retorna el nombre completo de una empresa incluyendo su número de 
 - Concatena el nombre de la empresa con su número de identificación fiscal
 - Retorna el string formateado
 
-## 2. Calcular Valor Total del Carrito (<a name="fx_get_total_price_cart"></a>`fx_get_total_price_cart`)
+#### 2. Calcular Valor Total del Carrito (<a name="fx_get_total_price_cart"></a>`fx_get_total_price_cart`)
 
-### Descripción
+#### Descripción
 
 Función que calcula el valor total de los productos en un carrito de compras específico.
 
@@ -568,7 +568,7 @@ Función que calcula el valor total de los productos en un carrito de compras es
 - Filtra por el ID de carrito específico
 - Retorna el valor total calculado
 
-## 3. Generar Fecha Aleatoria (<a name="fx_get_date_random"></a>`fx_get_date_random`)
+#### 3. Generar Fecha Aleatoria (<a name="fx_get_date_random"></a>`fx_get_date_random`)
 
 ### Descripción
 
@@ -598,7 +598,7 @@ Todas las funciones:
 - Incluyen características de determinismo apropiadas
 - Utilizan declaraciones de variables locales cuando es necesario
 
-## Uso en el Sistema
+### Uso en el Sistema
 
 Estas funciones se utilizan principalmente para:
 
@@ -610,7 +610,7 @@ Las funciones están diseñadas para ser reutilizables y mantener la consistenci
 
 # Triggers
 
-## 1. Verificación de Usuario Existente (<a name="tr.check_user_exists"></a>`tr.check_user_exists`)
+#### 1. Verificación de Usuario Existente (<a name="tr.check_user_exists"></a>`tr.check_user_exists`)
 
 ### Descripción
 
@@ -635,7 +635,7 @@ Trigger que verifica la duplicidad de usuarios antes de realizar una inserción 
    - Lanza error si encuentra duplicado
    - Mensaje: "El correo electrónico ya está registrado."
 
-## 2. Validación de Contraseña (<a name="tr.before_user_insert_password_check"></a>`tr.before_user_insert_password_check`)
+#### 2. Validación de Contraseña (<a name="tr.before_user_insert_password_check"></a>`tr.before_user_insert_password_check`)
 
 ### Descripción
 
@@ -653,7 +653,7 @@ Trigger que verifica la longitud mínima de la contraseña antes de insertar un 
 - Lanza error si la longitud es menor
 - Mensaje: "Password must be at least 6 characters long"
 
-## 3. Validación de Número de Identificación (<a name="tr.before_user_insert_id_check"></a>`tr.before_user_insert_id_check`)
+#### 3. Validación de Número de Identificación (<a name="tr.before_user_insert_id_check"></a>`tr.before_user_insert_id_check`)
 
 ### Descripción
 
