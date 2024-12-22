@@ -707,4 +707,11 @@ Estos triggers aseguran:
 
   - [Estructura de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/estructura.sql)
   - [Inserción Datos de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/population.sql)
-  - hola
+
+la forma de carga de Datos se hara a traves de sistema tradicional de INSERT INTO como veremos en el ejemplo
+
+```sql
+-- Obtener Listado Hitstorial de Ordenes
+
+SELECT * FROM supercerca.vw_List_Most_Sale_Product;
+```
