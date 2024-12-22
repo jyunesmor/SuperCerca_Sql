@@ -1412,5 +1412,5 @@ Estos triggers aseguran:
 ## Listados Scripts
 
 - Para la creacion de la base de datos y completado de la misma, se utilizaron dos Scripts abajo vinculados para su observación y control:
-  - [Estructura de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/estructura.sql)
-  - [Inserción Datos de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/population.sql)
+  - [Estructura de Base de Datos]:(https://github.com/jyunesmor/SuperCerca_Sql/blob/main/estructura.sql)
+  - [Inserción Datos de Base de Datos]:(https://github.com/jyunesmor/SuperCerca_Sql/blob/main/population.sql)
