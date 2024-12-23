@@ -25,9 +25,9 @@
 
 ### Descripción General
 
-Este proyecto implementa un sistema de gestión de base de datos integral para una plataforma de comercio electrónico, que incluye vistas, procedimientos almacenados, funciones y triggers para administrar usuarios, productos y pedidos.
+<i>Este proyecto implementa un sistema de gestión de base de datos integral para una plataforma de comercio electrónico, que incluye vistas, procedimientos almacenados, funciones y triggers para administrar usuarios, productos y pedidos.
 
-Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.
+Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.</i>\_
 
 ### Solución que Proporciona
 
@@ -58,7 +58,7 @@ Con esta base de datos, un equipo de desarrollo puede crear una aplicación de c
 ### 1. Usuarios (`users`)
 
 - Almacena los datos de los usuarios, incluyendo identificación, nombre, apellido, dni, correo electrónico, paswword. y cada usuario tendra la vinculacion de 1 a M con las tablas address y payment.
-- #### Atributos
+- ### Atributos
   | Atributo          | Tipo         | Descripción                                              |
   | ----------------- | ------------ | -------------------------------------------------------- |
   | id_user           | INT          | Identificador único del usuario (AUTO_INCREMENT)         |
