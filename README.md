@@ -714,24 +714,49 @@ Estos triggers aseguran:
 
 <a name="scripts"></a>
 
-## Listados Scripts
+## Scripts estructura de Base de Datos
 
 - Para la creacion de la base de datos y completado de la misma, se utilizaron dos Scripts abajo vinculados para su observación y control:
 
-  - [Estructura de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/estructura.sql)
-  - [Inserción Datos de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/population.sql)
+  - [Estructura de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/estructura.sql "Vea el Script de Estructura de Base de Datos")
+  - [Inserción Datos de Base de Datos](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/population.sql "Vea el Script de Inserción de Datos de Base de Datos")
 
-la forma de carga de Datos se hara a traves de sistema tradicional de INSERT INTO como veremos en el ejemplo
+- Ejemplos de Creación e Inserción de nuetsra Base de Datos
 
-```sql
--- Insertar Usuarios a la Base de Datos
-INSERT INTO users (name_user, last_name_user, identification_id, email, user_password, id_address, id_payment)
-VALUES
-  ('John', 'Doe', '12345678', 'johndoe@gmail.com', 'P@ssw0rd1', 1, 1),
-  ('Jane', 'Smith', '98765432', 'janesmith@outlook.com', 'S3cr3t2', 2, 3),
-  ('Michael', 'Johnson', '11223344', 'mjohnson@yahoo.com', 'P@ssw0rd3', 3,4),
-  ('Emily', 'Brown', '44556677', 'ebrown@hotmail.com', 'S3cr3t4', 4, 4),
-  ('David', 'Lee', '77889900', 'dlee@gmail.com', 'P@ssw0rd5', 5, 5),
-  ('Ethan', 'Davis', '55667788', 'edavis@yahoo.com', 'P@ssw0rd7', 7, 5),
-  ('Olivia', 'Miller', '88990011', 'omiller@hotmail.com', 'S3cr3t8', 5, 2);
-```
+  - La creación se realiza de acuerdo al suiguiente ejemplo
+
+        ```sql
+        -- Creación, Borrado, y uso de la Base de Datos
+         DROP DATABASE IF EXISTS supercerca;
+         CREATE DATABASE supercerca;
+         USE supercerca;
+
+        -- Insertar Usuarios a la Base de Datos
+        CREATE TABLE users(
+        id_user INT NOT NULL AUTO_INCREMENT,
+        name_user VARCHAR(256) NOT NULL,
+        last_name_user VARCHAR(256) NOT NULL,
+        identification_id VARCHAR(15) NOT NULL,
+        email VARCHAR(256) NOT NULL,
+        user_password VARCHAR(10) NOT NULL,
+        id_address INT,
+        id_payment INT,
+
+        PRIMARY KEY(id_user)
+        );
+        ```
+
+  - Carga de Datos se hara a traves de sistema tradicional de INSERT INTO como veremos en el ejemplo
+
+    ```sql
+    -- Insertar Usuarios a la Base de Datos
+    INSERT INTO users (name_user, last_name_user, identification_id, email, user_password, id_address, id_payment)
+    VALUES
+      ('John', 'Doe', '12345678', 'johndoe@gmail.com', 'P@ssw0rd1', 1, 1),
+      ('Jane', 'Smith', '98765432', 'janesmith@outlook.com', 'S3cr3t2', 2, 3),
+      ('Michael', 'Johnson', '11223344', 'mjohnson@yahoo.com', 'P@ssw0rd3', 3,4),
+      ('Emily', 'Brown', '44556677', 'ebrown@hotmail.com', 'S3cr3t4', 4, 4),
+      ('David', 'Lee', '77889900', 'dlee@gmail.com', 'P@ssw0rd5', 5, 5),
+      ('Ethan', 'Davis', '55667788', 'edavis@yahoo.com', 'P@ssw0rd7', 7, 5),
+      ('Olivia', 'Miller', '88990011', 'omiller@hotmail.com', 'S3cr3t8', 5, 2);
+    ```
