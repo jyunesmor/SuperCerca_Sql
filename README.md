@@ -237,7 +237,7 @@ Carrito de compras de los usuarios.
 - [`vw_list_most_sale_product`](#vw_list_most_sale_product)
 - [`vw_quantity_product_by_users`](#vw_quantity_product_by_users)
 
-## [Stored Procedures](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/objetos/2_storedProcedured.sql "Vea el Script de los Procedimientos Almacenados")
+## [Stored Procedures](./objetos/3_storedProcedured.sql "Vea el Script de los Procedimientos Almacenados")
 
 - [`sp_UpdateProductPrice`](#sp_UpdateProductPrice)
 - [`sp_updateUser`](#sp_updateUser)
