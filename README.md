@@ -259,7 +259,7 @@ Carrito de compras de los usuarios.
 - [`tr.before_user_insert_password_check`](#before_user_insert_password_check)
 - [`tr.before_user_insert_id_check`](#before_user_insert_id_check)
 
-## Descripción de los Objetos
+## Descripción de los Objetos y resultados obtenidos
 
 ### Views
 
