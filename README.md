@@ -230,14 +230,14 @@ Carrito de compras de los usuarios.
 
 # Database Objects
 
-## Views
+## [Views](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/objetos/1_views.sql "Vea el Script de las Vistas")
 
 - [`vw_list_total_sale_by_company`](#vw_list_total_sale_by_company)
 - [`vw_list_history_orders`](#vw_list_history_orders)
 - [`vw_list_most_sale_product`](#vw_list_most_sale_product)
 - [`vw_quantity_product_by_users`](#vw_quantity_product_by_users)
 
-## Stored Procedures
+## [Stored Procedures](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/objetos/2_storedProcedured.sql "Vea el Script de los Procedimientos Almacenados")
 
 - [`sp_UpdateProductPrice`](#sp_UpdateProductPrice)
 - [`sp_updateUser`](#sp_updateUser)
@@ -247,13 +247,13 @@ Carrito de compras de los usuarios.
 - [`sp_deleteProductsById`](#sp_deleteProductsById)
 - [`sp_create_order`](#sp_create_order)
 
-## Functions
+## [Functions](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/objetos/3_function.sql "Vea el Script de las Funciones")
 
 - [`fx_get_name_company`](#fx_get_name_company)
 - [`fx_get_total_price_cart`](#fx_get_total_price_cart)
 - [`fx_get_date_random`](#fx_get_date_random)
 
-## Triggers
+## [Triggers](https://github.com/jyunesmor/SuperCerca_Sql/blob/main/objetos/4_triggers.sql "Vea el Script de los Triggers")
 
 - [`tr.check_user_exists`](#check_user_exists)
 - [`tr.before_user_insert_password_check`](#before_user_insert_password_check)
