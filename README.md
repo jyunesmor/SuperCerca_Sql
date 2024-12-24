@@ -149,7 +149,7 @@ Con esta base de datos, un equipo de desarrollo puede crear una aplicación de c
   | id_payment   | INT          | Identificador único del método de pago (AUTO_INCREMENT) |
   | payment_type | VARCHAR(256) | Tipo de método de pago                                  |
 
-### 9. `company_type` (tipo de empresa)
+### 9. Tipo de Compañia (`company_type`)
 
 - Define el tipo de empresa (por ejemplo, fabricante, distribuidor).
 
@@ -258,7 +258,9 @@ Carrito de compras de los usuarios.
 - [`tr.before_user_insert_password_check`](#before_user_insert_password_check)
 - [`tr.before_user_insert_id_check`](#before_user_insert_id_check)
 
-## Views
+## Descripción de los Objetos
+
+### Views
 
 #### 1. Vista de Ventas Totales por Empresa (<a name="vw_list_total_sale_by_company"></a>`vw_list_total_sale_by_company`)
 
@@ -283,7 +285,7 @@ SELECT * FROM supercerca.vw_list_sale_by_company;
 Resultado de la consulta
 
 <p align="center">
-  <img src="image-5.png" alt="alt text">
+  <img src="./img/image-5.png" alt="vw_list_sale_by_company">
 </p>
 
 #### 2. Vista de Historial de Pedidos (<a name="vw_list_history_orders"></a>`vw_list_history_orders`)
@@ -321,7 +323,7 @@ SELECT * FROM supercerca.vw_list_history_orders;
 Resultado de la consulta
 
 <p align="center">
-  <img src="image-1.png" alt="alt text">
+  <img src="./img/image-1.png" alt="vw_list_history_orders">
 </p>
 
 #### 3. Vista de Productos por Empresa (<a name="vw_products_by_company"></a>`vw_products_by_company`)
@@ -339,7 +341,7 @@ La vista conecta:
 Los resultados se ordenan alfabéticamente por nombre de empresa.
 
 ```sql
--- Obtener Listado Hitstorial de Ordenes
+-- Obtener Listado de productosm junto a su compañia y precio.
 
 SELECT * FROM supercerca.vw_products_by_company;
 ```
@@ -347,7 +349,7 @@ SELECT * FROM supercerca.vw_products_by_company;
 Resultado de la consulta
 
 <p align="center">
-  <img src="image-2.png" alt="alt text">
+  <img src="./img/image-2.png" alt="vw_products_by_company">
 </p>
 
 #### 4. Vista de Cantidad de Productos por Usuario (vw_quantity_product_by_users)
@@ -364,7 +366,7 @@ La vista conecta:
 Los resultados se agrupan por carrito de compra (cart_id), permitiendo ver el volumen de compras por usuario.
 
 ```sql
--- Obtener Listado Hitstorial de Ordenes
+-- Obtener Listado de cantidad de Productos por usuario
 
 SELECT * FROM supercerca.vw_quantity_product_by_users;
 ```
@@ -372,7 +374,7 @@ SELECT * FROM supercerca.vw_quantity_product_by_users;
 Resultado de la consulta
 
 <p align="center">
-  <img src="image-3.png" alt="alt text">
+  <img src="./img/image-3.png" alt="vw_quantity_product_by_users">
 </p>
 
 #### 5. Vista de Productos Más Vendidos (<a name="vw_List_Most_Sale_Product"></a>`vw_List_Most_Sale_Product`)
@@ -392,7 +394,7 @@ Los resultados se:
 - Ordenan por cantidad de ventas en orden descendente
 
 ```sql
--- Obtener Listado Hitstorial de Ordenes
+-- Obtener Listado de productos más vendidos.
 
 SELECT * FROM supercerca.vw_List_Most_Sale_Product;
 ```
@@ -400,7 +402,7 @@ SELECT * FROM supercerca.vw_List_Most_Sale_Product;
 Resultado de la consulta
 
 <p align="center">
-  <img src="image-4.png" alt="alt text">
+  <img src="./img/image-4.png" alt="vw_List_Most_Sale_Product">
 </p>
 
 Todas las vistas:
@@ -423,7 +425,7 @@ Estas vistas están diseñadas para:
 
 ### Stored Procedures
 
-### 1. Obtención de Datos de Usuario (<a name="sp_GetUserDetails"></a>`sp_GetUserDetails`)
+#### 1. Obtención de Datos de Usuario (<a name="sp_GetUserDetails"></a>`sp_GetUserDetails`)
 
 Este procedimiento obtiene los datos detallados de un usuario específico:
 
@@ -442,7 +444,18 @@ Realiza joins con las tablas:
 
 - `users` → `address` → `city` → `state`
 
-### 2. Procedimientos de Actualización (UPDATE)
+```sql
+-- Obtener Detalle de Usuario segun ID ingresado.
+
+CALL supercerca.sp_GetUserDetails(5);
+```
+
+Resultado de la consulta
+
+<p align="center">
+  <img src="./img/Sp_userDetails.png" alt="vw_List_Most_Sale_Product">
+</p>
+#### 2. Procedimientos de Actualización (UPDATE)
 
 #### 2.1. Actualizar Precio de Producto (sp_UpdateProductPrice)
 
@@ -466,7 +479,7 @@ Realiza joins con las tablas:
 - **Función**: Actualiza todos los campos de un usuario existente
 - Implementa transacción para seguridad de datos
 
-### 3. Procedimientos de Creación (CREATE)
+#### 3. Procedimientos de Creación (CREATE)
 
 #### 3.1. Crear Usuario Nuevo (<a name="sp_createUser"></a>`sp_createUser`)
 
@@ -494,7 +507,7 @@ Realiza joins con las tablas:
   - Calcula precio total con `fx_get_total_price_cart()`
   - Crea nueva orden de compra
 
-### 4. Procedimientos de Eliminación (DELETE)
+#### 4. Procedimientos de Eliminación (DELETE)
 
 #### 4.1. Eliminar Usuario (<a name="sp_deleteUserById"></a>`sp_deleteUserById`)
 
@@ -514,7 +527,7 @@ Realiza joins con las tablas:
   - Desactiva verificación de claves foráneas
   - Opera dentro de una transacción
 
-### Detalles Técnicos
+##### Detalles Técnicos
 
 Todos los procedimientos:
 
@@ -529,11 +542,11 @@ Todos los procedimientos:
 
 #### 1. Obtener Nombre de Empresa (<a name="fx_get_name_company"></a>`fx_get_name_company`)
 
-#### Descripción
+##### Descripción
 
 Función que retorna el nombre completo de una empresa incluyendo su número de identificación fiscal.
 
-### Detalles Técnicos
+##### Detalles Técnicos
 
 - **Tipo**: `READS SQL DATA`
 - **Parámetros de entrada**:
@@ -541,7 +554,7 @@ Función que retorna el nombre completo de una empresa incluyendo su número de 
 - **Retorna**: VARCHAR(512)
 - **Formato de retorno**: "Nombre Empresa (Número Fiscal)"
 
-### Funcionamiento
+##### Funcionamiento
 
 - Realiza una consulta a la tabla `company`
 - Concatena el nombre de la empresa con su número de identificación fiscal
@@ -549,18 +562,18 @@ Función que retorna el nombre completo de una empresa incluyendo su número de 
 
 #### 2. Calcular Valor Total del Carrito (<a name="fx_get_total_price_cart"></a>`fx_get_total_price_cart`)
 
-#### Descripción
+##### Descripción
 
 Función que calcula el valor total de los productos en un carrito de compras específico.
 
-### Detalles Técnicos
+##### Detalles Técnicos
 
 - **Tipo**: `DETERMINISTIC`
 - **Parámetros de entrada**:
   - `_id_cart` (INT): ID del carrito
 - **Retorna**: DECIMAL(10,2)
 
-### Funcionamiento
+##### Funcionamiento
 
 - Realiza joins entre las tablas:
   - `users` → `cart` → `cart_items` → `products`
@@ -570,17 +583,17 @@ Función que calcula el valor total de los productos en un carrito de compras es
 
 #### 3. Generar Fecha Aleatoria (<a name="fx_get_date_random"></a>`fx_get_date_random`)
 
-### Descripción
+##### Descripción
 
 Función que genera una fecha aleatoria entre el 1 de enero de 2020 y el 13 de diciembre de 2024.
 
-### Detalles Técnicos
+##### Detalles Técnicos
 
 - **Tipo**: `NO SQL`
 - **Parámetros de entrada**: Ninguno
 - **Retorna**: DATE
 
-### Funcionamiento
+##### Funcionamiento
 
 - Utiliza `DATE_ADD` y `RAND()` para generar una fecha aleatoria
 - Rango de fechas:
@@ -588,7 +601,7 @@ Función que genera una fecha aleatoria entre el 1 de enero de 2020 y el 13 de d
   - Fecha final: '2024-12-13'
 - Calcula un intervalo aleatorio de días dentro de este rango
 
-## Características Comunes
+#### Características Comunes
 
 Todas las funciones:
 
@@ -598,7 +611,7 @@ Todas las funciones:
 - Incluyen características de determinismo apropiadas
 - Utilizan declaraciones de variables locales cuando es necesario
 
-### Uso en el Sistema
+#### Uso en el Sistema
 
 Estas funciones se utilizan principalmente para:
 
@@ -608,21 +621,21 @@ Estas funciones se utilizan principalmente para:
 
 Las funciones están diseñadas para ser reutilizables y mantener la consistencia en el formato y cálculos a través de toda la aplicación.
 
-# Triggers
+### Triggers
 
 #### 1. Verificación de Usuario Existente (<a name="tr.check_user_exists"></a>`tr.check_user_exists`)
 
-### Descripción
+#### Descripción
 
 Trigger que verifica la duplicidad de usuarios antes de realizar una inserción en la tabla `users`.
 
-### Detalles Técnicos
+#### Detalles Técnicos
 
 - **Momento de Ejecución**: BEFORE INSERT
 - **Nivel**: FOR EACH ROW
 - **Tabla**: users
 
-### Verificaciones
+#### Verificaciones
 
 1. **ID de Usuario**:
 
@@ -637,17 +650,17 @@ Trigger que verifica la duplicidad de usuarios antes de realizar una inserción 
 
 #### 2. Validación de Contraseña (<a name="tr.before_user_insert_password_check"></a>`tr.before_user_insert_password_check`)
 
-### Descripción
+#### Descripción
 
 Trigger que verifica la longitud mínima de la contraseña antes de insertar un nuevo usuario.
 
-### Detalles Técnicos
+#### Detalles Técnicos
 
 - **Momento de Ejecución**: BEFORE INSERT
 - **Nivel**: FOR EACH ROW
 - **Tabla**: users
 
-### Validación
+##### Validación
 
 - Verifica que la contraseña tenga al menos 6 caracteres
 - Lanza error si la longitud es menor
@@ -655,17 +668,17 @@ Trigger que verifica la longitud mínima de la contraseña antes de insertar un 
 
 #### 3. Validación de Número de Identificación (<a name="tr.before_user_insert_id_check"></a>`tr.before_user_insert_id_check`)
 
-### Descripción
+#### Descripción
 
 Trigger que valida el formato del número de identificación del usuario.
 
-### Detalles Técnicos
+#### Detalles Técnicos
 
 - **Momento de Ejecución**: BEFORE INSERT
 - **Nivel**: FOR EACH ROW
 - **Tabla**: users
 
-### Validación
+#### Validación
 
 - Utiliza expresión regular: `^[0-9]{5,15}$`
 - Verifica que:
@@ -674,7 +687,7 @@ Trigger que valida el formato del número de identificación del usuario.
 - Lanza error si el formato es inválido
 - Mensaje: "Invalid identification number format"
 
-## Características Comunes
+### Características Comunes
 
 Todos los triggers:
 
