@@ -28,7 +28,7 @@
 
 <i>Este proyecto implementa un sistema de gestión de base de datos integral para una plataforma de comercio electrónico, que incluye vistas, procedimientos almacenados, funciones y triggers para administrar usuarios, productos y pedidos.
 
-Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.</i>\_
+Este modelo de base de datos soporta una aplicación de comercio electrónico donde los usuarios pueden realizar pedidos de productos ofrecidos por diferentes empresas. Cada pedido genera una factura y admite varios métodos de pago. El sistema también gestiona información de direcciones, entregas y detalles sobre las empresas que ofrecen los productos.</i>
 
 ### Solución que Proporciona
 
@@ -761,3 +761,19 @@ Estos triggers aseguran:
       ('Ethan', 'Davis', '55667788', 'edavis@yahoo.com', 'P@ssw0rd7', 7, 5),
       ('Olivia', 'Miller', '88990011', 'omiller@hotmail.com', 'S3cr3t8', 5, 2);
     ```
+
+<a name="tools"></a>
+
+## Herramientas Utilizadas
+
+La herramienta utilizada es Mysql Workbench, IDE que me permitio poder poder crear y visualizar la estructura de la base de datos, y poder realizar consultas y transacciones,
+para poder garantizar la integridad, y optimizar el rendimiento, se resolvio la utilización de el motor INNODB, la cual a tradez de su soporte ACID, nos brindan la seguridad suficiemte para las operaciones deseadas.
+
+Soporte ACID en InnoDB:
+
+- Atomicidad: Las transacciones se completan totalmente o no se realizan
+- Consistencia: La base de datos mantiene un estado válido antes y después de cada transacción
+- Aislamiento: Las transacciones son independientes entre sí
+- Durabilidad: Los cambios persisten incluso ante fallos del sistema
+
+![mysqlimage](./img/Mysql2.png)
